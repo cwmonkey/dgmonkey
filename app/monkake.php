@@ -34,11 +34,11 @@ class M {
 		//require_once($dirname . '/monkake.php');
 
 		// Main M configuration file
-		require_once($dirname . '/config.php');
+		self::LoadConfig($dirname . '/config.php');
 
 		// Attempt to load local configuration for overrides, etc
 		if ( file_exists($dirname . '/local.config.php') ) {
-			include_once($dirname . '/local.config.php');
+			self::LoadConfig($dirname . '/local.config.php');
 		}
 
 		// Get page controller name
@@ -50,11 +50,10 @@ class M {
 
 		// TODO: Run more validation on the controller name?
 		if ( !$controller_name ) M::Error('Could not locate 404 controller', TRUE);
-		$controller_file = M::Get('controller_directory', NULL, TRUE) . $controller_name;
+		$controller_file = M::Get('controller_directory', NULL, TRUE) . $controller_name . M::Get('controller_file_append');
 
 		// Include page controller file
 		if ( !include_once($controller_file) ) M::Error('Could not load controller ' . $controller_file, TRUE);
-
 
 		// Include main Monkake controller here:
 		// require_once('../app/controller.php');
@@ -109,13 +108,27 @@ class M {
 		}
 	} // Get()
 
-	public static function Set($var_name, $var_value, $overwrite = TRUE) {
-		if ( $overwrite ) {
-			self::$_Config[$var_name] = $var_value;
-		} else if ( !isset($_config[$var_name]) ) {
-			self::$_Config[$var_name] = $var_value;
+	public static function Set($var_name, $var_value = NULL, $overwrite = TRUE) {
+		if ( is_array($var_name) ) {
+			foreach ( $var_name as $key => $val ) {
+				self::Set($key, $val);
+			}
+		} else {
+			if ( $overwrite ) {
+				self::$_Config[$var_name] = $var_value;
+			} else if ( !isset($_config[$var_name]) ) {
+				self::$_Config[$var_name] = $var_value;
+			}
 		}
 	} // Set()
+
+
+	public function LoadConfig($file) {
+		if ( file_exists($file) ) {
+			require_once($file);
+			self::Set(get_defined_vars());
+		}
+	}
 
 	private static $_loadedfiles = array();
 	private static $_loadedinstances = array();
@@ -164,6 +177,38 @@ class M {
 			return self::$_loadedinstances[$class_key];
 		}
 	}
+
+	public static function autoload($name) {
+		$file = self::Get('monkake_dir');
+		$loading_file = null;
+		$class_file = $file . self::Get('class_dir') . $name . self::Get('class_append');
+		$loading = null;
+
+		if ( strpos($name, self::Get('controller_append')) === 0 ) {
+			$loading = 'controller';
+			$name = str_replace(self::Get('controller_append'), '', $name);
+		} elseif ( strpos($name, self::Get('model_append')) === 0 ) {
+			$loading = 'model';
+			$name = str_replace(self::Get('model_append'), '', $name);
+		} elseif ( strpos($name, self::Get('view_append')) === 0 ) {
+			$loading = 'view';
+			$name = str_replace(self::Get('view_append'), '', $name);
+		}
+
+		if ( $loading ) {
+			$loading_file = $file . self::Get($loading . '_dir') . $name . self::Get($loading . '_file_append');
+			if ( !$loading_file || !file_exists($loading_file) || !require_once($loading_file) ) {
+				throw new Exception('Unable to load class: ' . $name . ' as ' . $loading_file);
+			}
+		} else if ( !$class_file || !file_exists($class_file) || !require_once($class_file) ) {
+			throw new Exception('Unable to load class: ' . $name . ' as ' . $class_file);
+		}
+	}
+}
+
+
+function __autoload($name) {
+	M::autoload($name);
 }
 
 class RequiredConfigKeyNotSetException extends Exception { }

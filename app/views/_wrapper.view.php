@@ -14,7 +14,6 @@
 	<![endif]-->
 
 	<!--[if !IE 6]><!-->
-	<link href='http://fonts.googleapis.com/css?family=Ranchers|Londrina+Shadow|Sniglet:800|Erica+One|Spicy+Rice|Parisienne|Frijole' rel='stylesheet' type='text/css' media="screen" />
 	<? $view->RenderCssFiles(array(
 		'reset.css',
 		// 'normalize_cms.css',

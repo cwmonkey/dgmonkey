@@ -1,8 +1,18 @@
 <?php
 
-M::Set('upload_directory', M::Get('monkake_directory') . 'doc-root/upload/');
+$upload_directory = $monkake_directory . 'doc-root/upload/';
 
-M::Set('ladedgm_tables',
+$controller_file_append = '.ctrl.php';
+$view_file_append = '.view.php';
+$model_file_append = '.mdl.php';
+$template_file_append = '.tpl.php';
+
+$controller_append = 'Controller';
+$view_append = 'View';
+$model_append = 'Model';
+$template_append = 'Template';
+
+$ladedgm_tables =
 array(
 	array(
 		'Name' => 'ladedgm_section',
@@ -894,9 +904,9 @@ array(
 			),
 		)
 	),
-));
+);
 
-M::Set('ladedgm_sections', array(
+$ladedgm_sections = array(
 	array(
 		'Name' => 'grpright',
 		'DisplayName' => 'Rights',
@@ -950,4 +960,4 @@ M::Set('ladedgm_sections', array(
 		'DisplayName' => 'Store Items',
 		'Table' => 'ladedgm_storeitem',
 	),
-));
+);

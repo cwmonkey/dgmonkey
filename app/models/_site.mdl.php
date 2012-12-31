@@ -285,7 +285,6 @@ class _site {
 			echo '<link rel="stylesheet" type="text/css" href="' . $media_url . '/css/' . $lastmod . '/' . md5(implode(',', $files)) . '" />';
 		}
 	}
-
 }
 
 class Event {
