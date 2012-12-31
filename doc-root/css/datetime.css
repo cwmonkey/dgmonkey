@@ -1,0 +1,156 @@
+.datetime_container {
+	width: 300px;
+	font-size: 12px;
+	background-color: #ddd;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	border: 2px outset #eee;
+	}
+
+.datetime_container h3,
+.datetime_container td,
+.datetime_container th {
+	font-size: 12px;
+	margin: 0;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	padding: 0;
+	}
+
+.datetime_container h3 {
+	padding: 2px 0 0 0;
+	}
+
+.datetime_container h2 {
+	margin: 0;
+	padding: 0;
+	}
+
+.datetime_container h2 a {
+	font-size: 12px;
+	text-align: center;
+	background: #bbb;
+	color: #fff;
+	margin: 0;
+	padding: 2px;
+	display: block;
+	}
+
+.datetime_container ul,
+.datetime_container ol,
+.datetime_container li,
+.datetime_container div {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	display: inline;
+	}
+
+.datetime_main a {
+	display: block;
+	padding: 2px;
+	border: 1px outset #aaa;
+	background-color: #fff;
+	text-align: center;
+	}
+
+.datetime_container ul,
+.datetime_container ol,
+.datetime_container li,
+.datetime_container div {
+	display: inline-block;
+	}
+
+.datetime_container .datetime_date {
+	float: left;
+	width: 215px;
+	padding-left: 2px;
+	display: block;
+	}
+
+.datetime_year {
+	width: 180px;
+	}
+
+.datetime_day {
+	width: 180px;
+	}
+
+.datetime_day thead th {
+	background-color: #000;
+	color: #fff;
+	padding: 2px;
+	}
+
+.datetime_day a {
+	display: block;
+	text-align: center;
+	background-color: #ddd;
+	}
+
+.datetime_day a.datetime_curmonth {
+	background-color: #fff;
+	}
+
+.datetime_month {
+	width: 180px;
+	}
+
+.datetime_month li {
+	width: 30px;
+	}
+
+.datetime_month li a {
+	display: block;
+	text-align: center;
+	}
+
+.datetime_container .datetime_time {
+	float: left;
+	padding-left: 2px;
+	display: block;
+	}
+
+.datetime_container .datetime_hour {
+	float: left;
+	display: block;
+	}
+
+.datetime_hour li,
+.datetime_hour a {
+	display: block;
+	}
+
+.datetime_minute li,
+.datetime_minute a {
+	display: block;
+	}
+
+.datetime_container .datetime_minute {
+	float: left;
+	padding-left: 2px;
+	display: block;
+	}
+
+.datetime_tens {
+	width: 20px;
+	float: left;
+	}
+
+.datetime_ones {
+	width: 20px;
+	float: left;
+	}
+
+.datetime_container .datetime_ampm {
+	clear: both;
+	display: block;
+	}
+
+.datetime_container .datetime_datetime {
+	display: block;
+	clear: both;
+	}
+
+.datetime_container  a.datetime_current {
+	background-color: #ffa;
+	border-style: inset;
+	}

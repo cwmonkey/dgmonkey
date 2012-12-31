@@ -1,0 +1,919 @@
+/* TOC
+	1) DEFAULTS
+		1.1) Resets
+		1.2) Baseline
+		1.3) Tables
+		1.4) Forms
+		1.5) Links
+		1.6) Special Classes
+			1.6.1) CMS
+	2) SITE SPECIFIC
+		2.1) Elements
+		2.2) Classes
+		2.3) ID's
+	3) PAGE TYPE SPECIFIC
+	4) SECTION SPECIFIC
+	5) PAGE SPECIFIC
+
+	HACKS:
+		IE6:
+		* html #ie6 { background-color: red; }
+
+		IE7:
+		*:first-child+html #ie7 { background-color: blue; }
+
+		Safari2:
+		body:last-child:not(:root:root) #safari2 { background-color: yellow; }
+
+		"Modern" browsers:
+		html>body #modern { background-color: pink; }
+
+		Safari 3:
+		html*:first-of-type #safari3 { background-color: orange; }
+		html*#id_of_body:first-of-type to target the body
+
+		Safari 2/3:
+		html* #safari2and3 { background-color: gray; }
+		html*#id_of_body to target the body
+		
+*/
+
+/* 1) DEFAULTS ---------------------------------------------------------- */
+	/* 1.1) Resets ---------------------------------------------- */
+	/* /Resets ------------------------------------------------- */
+
+	/* 1.2) Baseline ------------------------------------------- */
+html {
+	overflow-y: scroll;
+	/*height: 100%;*/
+	}
+
+body	{
+	font-family: sans-serif;
+	font-size: 100%;
+	}
+	/* /Baseline ----------------------------------------------- */
+
+	/* 1.3) Tables --------------------------------------------- */
+table	{ /* tables still need cellspacing=0 in the markup */
+	border-spacing: 0;
+	}
+
+	/* /Tables ------------------------------------------------- */
+
+	/* 1.4) Forms ---------------------------------------------- */
+input[type='text'],
+input[type='password'],
+textarea,
+select	{
+	padding: 1px;
+	}
+	/* /Forms -------------------------------------------------- */
+
+	/* 1.5) Links ---------------------------------------------- */
+	/* /Links -------------------------------------------------- */
+	/* 1.6) Special Classes ------------------------------------ */
+.clear	{
+	clear: both !important;
+	font-size: 0 !important;
+	line-height: 0 !important;
+	visibility: hidden !important;
+	float: none !important;
+	padding: 0 !important;
+	display: block !important;
+	}
+
+		/* 1.6.1) CMS ------------------------------------ */
+.cms p	{
+	margin: 0 0 1em 0;
+	}
+	
+.cms h1 {
+	font-size: 3em;
+	margin: 0 0 .5em 0;
+	font-weight: bold;
+	}
+	
+.cms h2 {
+	font-size: 2em;
+	margin: 0 0 .5em 0;
+	font-weight: bold;
+	}
+
+.cms h3 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+	font-weight: bold;
+	}
+
+.cms h4 {
+	font-size: 1.2em;
+	margin: 0 0 .5em 0;
+	font-weight: bold;
+	}
+
+.cms h5 {
+	font-size: 1em;
+	margin: 0 0 .5em 0;
+	font-weight: bold;
+	}
+
+.cms h6 {
+	font-size: 1em;
+	margin: 0 0 .5em 0;
+	font-weight: bold;
+	}
+
+.cms blockquote {
+	margin: 0 0 1.5em 1.5em;
+	}
+	
+.cms ul,
+.cms ol {
+	margin: 0 0 1.5em 3em;
+	}
+	
+.cms ul,
+.cms ul li {
+	list-style-type: disc;
+	}
+
+.cms ol,
+.cms ol li {
+	list-style-type: decimal;
+	}
+
+.cms dl {
+	margin: 1.5em 0;
+	}
+
+.cms dl dt {
+	font-weight: bold;
+	}
+
+.cms strong {
+	font-weight: bold;
+	}
+
+.cms .center {
+	text-align: center;
+	}
+
+.cms table {
+	margin: 1.5em 0;
+	border-top: 1px solid black;
+	border-left: 1px solid black;
+	}
+
+.cms table th {
+	font-size: 1.2em;
+	font-weight: bold;
+	padding: .25em;
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+	}
+
+.cms table td {
+	font-size: 1em;
+	padding: .25em;
+	border-bottom: 1px solid black;
+	border-right: 1px solid black;
+	}
+
+.cms .image_right {
+	clear: right;
+	float: right;
+	margin: 0;
+	padding: 0 0 0 5px;
+	}
+
+.cms .image_right img {
+	display: block;
+	}
+		/* /CMS ------------------------------------------ */
+	/* /Special Classes ---------------------------------------- */
+/* /DEFAULTS ------------------------------------------------------------ */
+
+/* 2) SITE SPECIFIC ----------------------------------------------------- */
+	/* 2.1) Elements ------------------------------------------- */
+html,
+body {
+	/*height: 100%;*/
+	}
+
+body {
+	background: #172d79;
+	}
+
+body,
+th,
+td {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000;
+	}
+
+/* h1 {
+	height: 113px;
+	background: url(/images/global_header.gif) 15px 15px no-repeat;
+	overflow: hidden;
+	text-indent: -1000px;
+	line-height: 1000px;
+	padding: 15px;
+	}*/
+
+h1 {
+	padding: 15px 0 0 15px;
+}
+
+h1 a {
+	display: block;
+	}
+
+h1 img {
+	display: block;
+}
+
+hr {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	height: 0;
+	overflow: hidden;
+	clear: both;
+	visibility: hidden;
+	display: block;
+	}
+* html hr {
+	margin: -8px 0 -7px 0;
+	}
+*:first-child+html hr {
+	margin: -8px 0 -7px 0;
+	}
+
+	/* /Elements ----------------------------------------------- */
+
+	/* 2.2) Classes -------------------------------------------- */
+.pdf_link {
+	background: url("/images/misc_link_pdf.gif") no-repeat 0 -1px;
+	padding-left: 20px;
+	padding-top: 1px;
+	}
+
+.cms p {
+	line-height: 18px;
+	}
+
+.movie object,
+.movie embed {
+	display: none;
+	}
+
+.movie_alt {
+	display: block;
+	}
+
+.movie_toolbar {
+	display: block;
+	}
+	/* /Classes ------------------------------------------------ */
+
+	/* 2.3) ID's ----------------------------------------------- */
+#main {
+	min-height: 100%;
+	width: 980px;
+	margin: auto;
+	position: relative;
+	background: #fff url(/images/global_bg_8.png) left top repeat-y;
+	}
+* html #main {
+	height: 100%;
+	}
+
+#main_w {
+	min-height: 100%;
+	padding: 0 20px;
+	position: relative;
+	}
+* html #main_w {
+	height: 100%;
+	}
+
+#header {
+	width: 680px;
+	}
+
+#main_e {
+	float: left;
+	width: 680px;
+	}
+
+#nav {
+	height: 38px;
+	line-height: 38px;
+	background: #000;
+	color: #fff;
+	float: left;
+	padding: 0 19px 0 0;
+	border-radius: 19px;
+	}
+
+#nav_w {
+	height: 38px;
+	line-height: 38px;
+	float: left;
+	padding: 0 0 0 19px;
+	overflow: hidden;
+	}
+
+#nav li {
+	float: left;
+	}
+
+#nav li a {
+	display: block;
+	height: 38px;
+	padding: 0 15px;
+	color: #fff;
+	text-decoration: none;
+	float: left;
+	}
+
+#nav li a:hover {
+	color: #f00;
+	}
+
+#content {
+	padding: 15px 15px 40px 15px;
+	width: 630px;
+	}
+
+#content h2 {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	padding-bottom: 15px;
+	font-size: 16px;
+	}
+
+#footer {
+	width: 880px;
+	text-align: center;
+	height: 281px;
+	line-height: 40px;
+	overflow: hidden;
+	clear: both;
+	background: url(/images/global_footer_bg.gif) 75px 40px no-repeat;
+	padding-top: 90px;
+	}
+
+#sponsors {
+	clear: both;
+	height: 241px;
+	overflow: hidden;
+	}
+
+#sponsors ul {
+	width: 600px;
+	}
+
+#sponsors ul li {
+	padding-bottom: 10px;
+	}
+
+#sponsors h4 {
+	clear: both;
+	display: block;
+	}
+
+#sponsors * {
+	display: inline-block;
+	vertical-align: top;
+	/* height: 40px; */
+	padding-right: 5px;
+	}
+* html #sponsors * {
+	display: inline;
+	}
+*:first-child+html #sponsors * {
+	display: inline;
+	}
+
+#modal_overlay {
+	background-color: #000;
+	}
+
+#personal_sponsors {
+	padding-bottom: 20px;
+	text-align: center;
+	}
+
+#personal_sponsors li {
+	padding: 0 5px 10px 0;
+	display: inline-block;
+	}
+* html #personal_sponsors li {
+	display: inline;
+	}
+*:first-child+html #personal_sponsors li {
+	display: inline;
+	}
+
+#extras {
+	float: left;
+	right: 0;
+	top: 0;
+	padding: 20px 10px 0 10px;
+	width: 240px;
+	}
+
+#ad {
+	width: 240px;
+	}
+
+#ad h4 {
+	height: 10px;
+	overflow: hidden;
+	}
+
+#ad img {
+	margin-top: -10px;
+	display: block;
+	}
+
+#paypal_nav {
+	width: 100%;
+	text-align: right;
+	padding-bottom: 15px;
+}
+
+#paypal_nav form,
+#paypal_logo {
+	display: inline-block;
+}
+
+	/* /ID's --------------------------------------------------- */
+/* /SITE SPECIFIC ------------------------------------------------------- */
+
+/* 3) PAGE TYPE SPECIFIC ------------------------------------------------ */
+/* /PAGE TYPE SPECIFIC -------------------------------------------------- */
+
+
+/* 4) SECTION SPECIFIC -------------------------------------------------- */
+	/* SECTION --------------------------------------------- */
+	/* /SECTION -------------------------------------------- */
+/* /SECTION SPECIFIC ---------------------------------------------------- */
+
+
+/* 5) PAGE SPECIFIC ----------------------------------------------------- */
+	/* HOME --------------------------------------------------- */
+#home #nav #home_nav a {
+	color: #999;
+	}
+
+#home #tour_bar {
+	width: 240px;
+	border: 1px solid #000;
+	border-top: none;
+	float: right;
+	margin-left: 15px;
+	background: #fff;
+	}
+
+#home #tour_bar h2 {
+	padding: 5px 10px;
+	background: #000;
+	color: #fff;
+	margin-bottom: 3px;
+	text-align: center;
+	}
+
+#home .schedule {
+	text-align: left;
+	padding: 0 15px;
+	}
+
+#home .schedule dt {
+	padding: 7px 10px 0 0;
+	font-weight: bold;
+	}
+* html #home .schedule dt {
+	margin-right: -4px;
+	}
+*:first-child+html #home .schedule dt {
+	margin-right: -1px;
+	}
+
+#home .schedule dd {
+	padding: 7px 0 2px 10px;
+	margin-left: -1px;
+	}
+* html #home .schedule dd {
+	zoom: 1;
+	}
+*:first-child+html #home .schedule dd {
+	zoom: 1;
+	margin: 0;
+	}
+
+#home .schedule dd p {
+	padding-bottom: 10px;
+	}
+
+#home .cms {
+	border-bottom: 1px solid black;
+	margin-bottom: 10px;
+	}
+
+#home #more_news {
+	padding-top: 15px;
+	font-weight: bold;
+	font-size: 16px;
+}
+
+#home #follow .cms {
+	padding-bottom: 15px;
+}
+
+#home .fb-like {
+	display: inline-block;
+}
+
+#home #facebook_like {
+	line-height: 20px;
+	display: inline-block;
+	padding-left: 10px;
+}
+
+#home #follow iframe {
+	display: inline-block;
+	vertical-align: bottom;
+}
+
+#home #facebook_like span {
+	vertical-align: text-top;
+	display: inline-block;
+}
+
+	/* /HOME -------------------------------------------------- */
+
+	/* TOUR SCHEDULE ------------------------------------------ */
+#tour #nav #tour_nav a {
+	color: #999;
+	}
+
+#tour .schedule {
+	text-align: left;
+	padding-left: 25px;
+	}
+
+#tour .schedule dt {
+	float: left;
+	clear: left;
+	width: 120px;
+	padding: 7px 10px 7px 0;
+	font-weight: bold;
+	border-right: 1px solid #000;
+	border-top: 1px dashed #000;
+	margin-top: -1px;
+	}
+* html #tour .schedule dt {
+	margin-right: -4px;
+	}
+*:first-child+html #tour .schedule dt {
+	margin-right: -1px;
+	}
+
+#tour .schedule dd {
+	float: left;
+	clear: right;
+	padding: 7px 0 2px 10px;
+	border-left: 1px solid #000;
+	margin-left: -1px;
+	margin-top: -1px;
+	border-top: 1px dashed #000;
+	width: 460px;
+	}
+* html #tour .schedule dd {
+	float: none;
+	zoom: 1;
+	}
+*:first-child+html #tour .schedule dd {
+	float: none;
+	zoom: 1;
+	margin: 0;
+	}
+
+#tour dd p {
+	padding-bottom: 10px;
+	}
+
+#tour .cms {
+	clear: both;
+	padding: 10px;
+	}
+
+#tour #content h3 {
+	font-family: Georgia, "Times New Roman", Times, serif;
+	padding: 0 0 5px 5px;
+	font-size: 14px;
+	border-bottom: 1px solid #000;
+	}
+
+	/* /TOUR SCHEDULE ----------------------------------------- */
+
+	/* SPONSORED PLAYERS -------------------------------------- */
+#sponsored_players #nav #sponsored_nav a {
+	color: #999;
+	}
+	/* /SPONSORED PLAYERS ------------------------------------- */
+
+	/* COURSES ------------------------------------------------ */
+#courses #nav #courses_nav a {
+	color: #999;
+	}
+	/* /COURSES ----------------------------------------------- */
+
+	/* GALLERY ------------------------------------------------ */
+#gallery #nav #gallery_nav a {
+	color: #999;
+	}
+
+#gallery #content li .image img {
+    vertical-align: middle;
+	}
+
+#gallery #content li .image a {
+    display: block;
+    font-size: 0;
+    height: 110px;
+    line-height: 110px;
+    overflow: hidden;
+    width: 110px;
+	}
+
+#gallery #content li .image {
+    -moz-border-radius: 5px 5px 5px 5px;
+    background: none repeat scroll 0 0 #EAEAF3;
+    border: 1px solid #828299;
+    height: 110px;
+    margin: 0 auto 3px;
+    padding: 5px;
+    width: 110px;
+	}
+
+#gallery #content .image,
+#gallery #content .price,
+#gallery #content .name {
+    text-align: center;
+	}
+
+#gallery #content li:nth-child(4n+1) {
+    clear: left;
+	}
+
+#gallery #content ul li {
+    float: left;
+    list-style: none outside none;
+    margin: 0;
+    padding: 5px;
+    width: 140px;
+	}
+
+#gallery #content li a {
+    color: #323299;
+	}
+
+#gallery #content li a:hover {
+    color: #828299;
+	}
+
+	/* /GALLERY ----------------------------------------------- */
+
+	/* LINKS -------------------------------------------------- */
+#links #nav #links_nav a {
+	color: #999;
+	}
+
+#links #main .cms li {
+	line-height: 18px;
+	}
+	/* /LINKS ------------------------------------------------- */
+
+
+	/* CONTACT ------------------------------------------------ */
+#contact #nav #contact_nav a {
+	color: #999;
+	}
+	/* /CONTACT ----------------------------------------------- */
+
+	/* REGISTRATION ------------------------------------------- */
+#registration #content h4 {
+	float: left;
+	padding: 0 10px;
+	}
+
+#registration #content .add_to_cart {
+	float: right;
+	text-align: right;
+	padding-left: 10px;
+	}
+
+#registration #content input[type="text"] {
+	width: 100px;
+	}
+
+#registration #content .cms form {
+	border-bottom: 1px solid black;
+	width: 100%;
+	overflow: hidden;
+	padding-top: 10px;
+	}
+	/* /REGISTRATION ------------------------------------------ */
+
+	/* STORE ------------------------------------------- */
+#store h2 {
+	float: left;
+}
+
+#store #paypal_nav {
+	float: right;
+	width: auto;
+}
+
+#store .storeitem .add_to_cart {
+	padding-top: 10px;
+	}
+
+#store #content .cms form {
+	border-bottom: 1px solid black;
+	width: 100%;
+	overflow: hidden;
+	padding-top: 10px;
+	}
+
+#store #content ul {
+	display: inline-block; *display: inline; *zoom: 1;
+}
+
+/*#store #content li {
+	float: left;
+	width: 50%;
+}*/
+
+#store .storeitem .image {
+	float: left;
+	padding-right: 15px;
+}
+
+#store .storeitem .description {
+	float: left;
+}
+
+#store .storeitem h3 {
+	margin-top: 0;
+}
+	/* /STORE ------------------------------------------ */
+
+/* /PAGE SPECIFIC ------------------------------------------------------- */
+
+
+/* MEDIA QUERIES -------------------------------- */
+@media all and (max-width: 979px) {
+	body {
+	}
+
+	#main {
+		background: #fff;
+		width: auto;
+		max-width: 710px;
+	}
+
+	#main_e {
+		width: auto;
+		float: none;
+	}
+
+	#header {
+		width: auto;
+	}
+
+	#nav {
+		float: none;
+		height: auto;
+		overflow: visible;
+	}
+
+	#nav_w {
+		float: none;
+		height: auto;
+		overflow: visible;
+	}
+
+	#nav {
+		float: none;
+		display: inline-block;
+	}
+
+	#content {
+		width: auto;
+	}
+
+	#extras {
+		float: none;
+		width: auto;
+	}
+
+	#footer {
+		width: auto;
+	}
+
+	h1 img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	#ad {
+		display: none;
+	}
+}
+
+
+@media all and (max-width: 539px) {
+	#home #tour_bar {
+		float: none;
+		margin-left: 0;
+		width: auto;
+		margin-bottom: 15px;
+	}
+}
+
+@media all and (max-width: 349px) {
+	* {
+		max-width: 100% !important;
+		-webkit-box-sizing: border-box;
+		-moz-box-sizing: border-box;
+		-ms-box-sizing: border-box;
+		box-sizing: border-box;
+
+	}
+
+	h1 {
+		padding: 0;
+	}
+
+	#main_w {
+		padding: 0;
+	}
+
+	#nav {
+		padding: 45px 0 0 0;
+		border-radius: 0;
+		background: url(/images/global_menu_white.png) center -28px no-repeat;
+		height: 0;
+		overflow: hidden;
+		position: absolute;
+		right: 0;
+		top: 0;
+		width: 20%;
+	}
+
+	#nav.clickedon {
+		height: auto;
+		width: 100%;
+		background-position: 240px -128px;
+		-webkit-box-shadow: 0 0 10px #000;
+		box-shadow: 0 0 10px #000;
+	}
+
+	#nav li a {
+		display: block;
+		background: #000;
+		padding: 0;
+		text-align: center;
+		width: 100%;
+		font-weight: bold;
+	}
+
+	#nav ul li {
+		width: 50%;
+		float: left;		
+	}
+
+	#nav_w {
+		padding: 0;
+	}
+
+	#nav #home_nav {
+		display: none;
+	}
+
+	h1 {
+		background: url(/images/global_dgm.gif) 10px 10px no-repeat;
+		height: 45px;
+		border-bottom: 1px solid #000;
+	}
+
+	h1 img {
+		visibility: hidden;
+	}
+}
+/* /MEDIA QUERIES -------------------------------- */

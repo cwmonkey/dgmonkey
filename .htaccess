@@ -1,0 +1,27 @@
+RewriteEngine On
+
+#<Files index.php/>
+#AuthUserFile /home/monkey/public_html/subdomains/monkake/.htpasswd
+#AuthName "Password Protected"
+#AuthType Basic
+#Require valid-user
+#</Files>
+
+RewriteRule ^$ /doc-root/index.php [nc,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^lade/(.*)$ /doc-root/lade/index.php/$1 [nc,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_URI} !^/doc-root
+RewriteRule ^(.*)$ /doc-root/$1 [L]
+
+#RewriteRule ^/$ /index.php [nc,L]
+#RewriteRule ^(/app.*)$ /index.php/$1 [nc,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ /doc-root/index.php/$1 [nc,L]
+
