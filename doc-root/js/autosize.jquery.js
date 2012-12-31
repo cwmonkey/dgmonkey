@@ -38,7 +38,7 @@ jQuery.fn.autosize = function(parameters) {
 	}, parameters || {});
 
 	return this.each(function() {
-		var $this = $(this)
+		var $this = $(this);
 		if ( !$this.is('textarea') ) $('textarea', this).autoexpand();
 
 		// Check to see if .autosize() has already been called on this textarea
@@ -182,5 +182,5 @@ jQuery.fn.autosize = function(parameters) {
 			expand();
 		}, 0);
 	});
-}
+};
 })(jQuery);

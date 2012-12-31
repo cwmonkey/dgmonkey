@@ -125,7 +125,7 @@
 
 		$('.gcms_val_datetime input', $.modal.$content).datetime();
 		$('.gcms_val_date input', $.modal.$content).datetime({format: 'yyyy-mm-dd'});
-	}
+	};
 
 	// Hide edit links and attach click events to gcms nodes
 	var gcms_wordlet = function() {
@@ -141,7 +141,7 @@
 			$.modal.load($link.attr('href') + '&ajax=1&' + date.valueOf(), null, ajax_submit, {autoResize: true, overlay: true, speed: 'fast', opacity: 0.5, center: false, height: null, width: null, wrappers: ['content'], prepend: 'gcms'});
 			return false;
 		});
-	}
+	};
 
 	$('.gcms_wordlet').each(gcms_wordlet);
 
@@ -157,7 +157,7 @@
 			$.modal.load($this.attr('href') + '&ajax=1&' + date.valueOf(), null, ajax_submit, {autoResize: true, overlay: true, speed: 'fast', opacity: 0.5, center: false, height: null, width: null, wrappers: ['content'], prepend: 'gcms'});
 			return false;
 		});
-	}
+	};
 
 	$('.gcms_link').each(gcms_link);
 });
@@ -182,9 +182,9 @@ jQuery.fn.draggable = function(parameters) {
 				left: obj_start_x + (event.pageX - mouse_start_x),
 				top: obj_start_y + (event.pageY - mouse_start_y)
 				});
-		}
+		};
 
-		var return_false = function() { return false; }
+		var return_false = function() { return false; };
 
 		$this
 			.mousedown(function(event) {
@@ -220,7 +220,7 @@ jQuery.fn.draggable = function(parameters) {
 				}
 			});
 	});
-}
+};
 
 jQuery.fn.resizable = function(parameters) {
 	var settings = jQuery.extend({
@@ -251,9 +251,9 @@ jQuery.fn.resizable = function(parameters) {
 					height: obj_start_h + (event.pageY - mouse_start_y)
 					});
 			}
-		}
+		};
 
-		var return_false = function() { return false; }
+		var return_false = function() { return false; };
 
 		$this
 			.mousedown(function(event) {
@@ -289,7 +289,7 @@ jQuery.fn.resizable = function(parameters) {
 				}
 			});
 	});
-}
+};
 
 // TODO: Make this a plugin
 

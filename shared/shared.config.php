@@ -6,6 +6,7 @@ $controller_file_append = '.ctrl.php';
 $view_file_append = '.view.php';
 $model_file_append = '.mdl.php';
 $template_file_append = '.tpl.php';
+$class_file_append = '.class.php';
 
 $controller_append = 'Controller';
 $view_append = 'View';

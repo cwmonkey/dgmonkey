@@ -10,7 +10,7 @@
 
 	<!--[if lt IE 9]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-		<script>window.html5 || document.write('<? $view->RenderJsFiles('lib/html5.js', true) ?>')</script>
+		<script>window.html5 || document.write('<? $view->RenderJsFiles('lib/html5.js', true, false) ?>')</script>
 	<![endif]-->
 
 	<!--[if !IE 6]><!-->
@@ -76,7 +76,7 @@
 				</div>
 			<? } ?>
 		<!-- /GCMS -->
-		<div id="header">
+		<header id="header">
 			<h1><a href="/"><img src="/images/global_header.gif" width="727" height="128" alt="Disc Golf Monkey" /></a></h1>
 			<nav id="nav"><div id="nav_w">
 				<ul>
@@ -100,7 +100,7 @@
 				| <a href="/links">>links</a>
 				| <a href="/storeou812">>store</a>
 			<? endif ?>
-		</div>
+		</header>
 		<hr />
 		<div id="content">
 			<?=$content?>
@@ -145,42 +145,50 @@
 	</div>
 </div>
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js" defer="defer"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
 <script>window.jQuery || document.write('<? $view->RenderJsFiles('lib/jquery-1.8.2.js', true) ?>')</script>
 
-<? $view->RenderJsFiles(array(
-	'modal.jquery.js',
-	'dropdown.jquery.js'
-)) ?>
-
-<? if ( !$page->EditMode ) { ?>
+<? if ( $page->EditMode ): ?>
 	<? $view->RenderJsFiles(array(
-		'global.js'
-	)) ?>
-<? } ?>
+		'modal.jquery.js',
+		'dropdown.jquery.js',
 
-<? if ( $page->EditMode || $page->CmsAccess ) { ?>
-	<? $view->RenderJsFiles(array(
 		'autosize.jquery.js',
 		'datetime.jquery.js',
 		'jquery.form.js',
 		'gcms.js'
 	)) ?>
-<? } ?>
+<? elseif ( $page->CmsAccess ): ?>
+	<? $view->RenderJsFiles(array(
+		'modal.jquery.js',
+		'dropdown.jquery.js',
+
+		'global.js',
+
+		'autosize.jquery.js',
+		'datetime.jquery.js',
+		'jquery.form.js',
+		'gcms.js'
+	)) ?>
+<? else: ?>
+	<? $view->RenderJsFiles(array(
+		'modal.jquery.js',
+		'dropdown.jquery.js',
+
+		'global.js'
+	)) ?>
+<? endif ?>
 
 <script type="text/javascript">
-var _gaq = _gaq || [];
-_gaq.push(['_setAccount', 'UA-7244346-1']);
-_gaq.push(['www.discgolfmonkey.com']);
-_gaq.push(['_trackPageview']);
-
-(function() {
-	var ga = document.createElement('script');
-	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 
-		'http://www') + '.google-analytics.com/ga.js';
-		ga.setAttribute('async', 'true');
-	document.documentElement.firstChild.appendChild(ga);
-})();
+	// Google Analytics
+    var _gaq=[
+    	['_setAccount','UA-7244346-1'],
+    	['_setDomainName','www.discgolfmonkey.com'],
+    	['_trackPageview']
+    ];
+    (function(d,t){var g=d.createElement(t),s=d.getElementsByTagName(t)[0];
+    g.src=('https:'==location.protocol?'//ssl':'//www')+'.google-analytics.com/ga.js';
+    s.parentNode.insertBefore(g,s)}(document,'script'));
 </script>
 
 </body>

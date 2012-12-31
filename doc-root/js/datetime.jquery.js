@@ -340,7 +340,7 @@ $.fn.datetime = function(options) {
 					.append(
 						$('<div/>').addClass(prepend + '_datetime').append($('<p/>').html("&nbsp;"))
 					)
-			)
+			);
 
 		$input.after($container);
 
@@ -401,7 +401,7 @@ $.fn.datetime = function(options) {
 			$months[curdate.getMonth()+1].addClass(prepend + '_current');
 
 			$input.val($.datetime.format(curdate, format));
-		}
+		};
 
 		updateCal();
 	});

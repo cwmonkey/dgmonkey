@@ -1,20 +1,28 @@
 <?php
 
+$debug = false;
+$minify_js = true;
+$minify_css = true;
+
 /* M specific configuration */
 
 $site_404_controller =  'site404';
 $fatal_error_message =  'An error has occured whie processing your request.';
 
+//} elseif ( strstr(__DIR__, '/usr/home/monkey/sites/dgmonkey') !== FALSE ) {
+$monkake_directory = '/home/monkey/sites/dgmonkey/';
+
 if ( $_SERVER['HTTP_HOST'] == 'dgmonkey.local' ) {
 	$monkake_directory = 'c:/wamp/www/sites/dgmonkey/';
 	error_reporting(E_ALL);
-} elseif ( strstr(__DIR__, '/usr/home/monkey/sites/dgmonkey') !== FALSE ) {
-	$monkake_directory = '/home/monkey/sites/dgmonkey/';
-} else {
+	$debug = true;
+	$minify_js = false;
+	$minify_css = false;
+} elseif ( $_SERVER['HTTP_HOST'] == 'dgmonkey.mysmilies.com' ) {
 	$monkake_directory = '/home/monkey/sites/mysmilies/subdomains/dgmonkey/';
 }
 
-$docroot_directory =    $monkake_directory . 'doc-root';
+$docroot_directory =    $monkake_directory . 'doc-root/';
 $app_directory =        $monkake_directory . 'app/';
 $class_directory =      $app_directory .     'classes/';
 $controller_directory = $app_directory .     'controllers/';

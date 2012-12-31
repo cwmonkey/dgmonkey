@@ -193,7 +193,7 @@ class _site {
 		return '';
 	}
 
-	public function RenderJsFiles($js_files, $add_slashes = false) {
+	public function RenderJsFiles($js_files, $add_slashes = false, $defer = true) {
 		$slash = '';
 		$media_url = $this->media_url();
 		if ( $add_slashes ) $slash = '\\';
@@ -202,7 +202,7 @@ class _site {
 		if ( !M::Get('minify_js') ) {
 			for ( $i=0; $i < count($js_files); $i++ ) {
 				$file = $js_files[$i];
-				echo '<script type="text/javascript" src="' . $media_url . '/js/' . $file . '" defer="defer"><' . $slash . '/script>';
+				echo '<script type="text/javascript" src="' . $media_url . '/js/' . $file . '" ' . (($defer)?'defer="defer"':'') . '><' . $slash . '/script>';
 			}
 			return;
 		}
@@ -220,7 +220,7 @@ class _site {
 		}
 
 		if ( count($files) ) {
-			$filename = M::Get('js_compressed_dir') . md5(implode(',', $files));
+			$filename = M::Get('js_compressed_dir') . md5(implode(',', $files)) . '.js';
 
 			if ( intval(@filemtime($filename)) < $lastmod ) {
 				foreach ( $files as $file ) {
@@ -234,7 +234,7 @@ class _site {
 				fclose($fp);
 				chmod($filename, 0777);
 			}
-			echo '<script type="text/javascript" src="' . $media_url . '/js/' . $lastmod . '/' . md5(implode(',', $files)) . '" defer="defer"><' . $slash . '/script>';
+			echo '<script type="text/javascript" src="' . $media_url . '/js/' . $lastmod . '/' . md5(implode(',', $files)) . '.js" ' . (($defer)?'defer="defer"':'') . '><' . $slash . '/script>';
 		}
 	}
 
@@ -269,7 +269,7 @@ class _site {
 		}
 
 		if ( count($files) ) {
-			$filename = M::Get('css_compressed_dir') . md5(implode(',', $files));
+			$filename = M::Get('css_compressed_dir') . md5(implode(',', $files)) . '.css';
 
 			if ( intval(@filemtime($filename)) < $lastmod ) {
 				foreach ( $files as $file ) {
@@ -282,7 +282,7 @@ class _site {
 				fclose($fp);
 				chmod($filename, 0777);
 			}
-			echo '<link rel="stylesheet" type="text/css" href="' . $media_url . '/css/' . $lastmod . '/' . md5(implode(',', $files)) . '" />';
+			echo '<link rel="stylesheet" type="text/css" href="' . $media_url . '/css/' . $lastmod . '/' . md5(implode(',', $files)) . '.css" />';
 		}
 	}
 }

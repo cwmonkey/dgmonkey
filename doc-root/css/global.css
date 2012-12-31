@@ -316,6 +316,7 @@ hr {
 	float: left;
 	padding: 0 19px 0 0;
 	border-radius: 19px;
+	z-index: 1;
 	}
 
 #nav_w {
@@ -837,6 +838,12 @@ hr {
 }
 
 
+@media all and (max-width: 705px) {
+	#nav #home_nav {
+		display: none;
+	}
+}
+
 @media all and (max-width: 539px) {
 	#home #tour_bar {
 		float: none;
@@ -865,10 +872,10 @@ hr {
 	}
 
 	#nav {
-		padding: 45px 0 0 0;
+		padding: 0;
 		border-radius: 0;
-		background: url(/images/global_menu_white.png) center -28px no-repeat;
-		height: 0;
+		background: url(/images/global_menu_white.png) 100% -28px no-repeat;
+		height: 45px;
 		overflow: hidden;
 		position: absolute;
 		right: 0;
@@ -876,10 +883,14 @@ hr {
 		width: 20%;
 	}
 
+	#nav ul {
+		padding-top: 45px;
+	}
+
 	#nav.clickedon {
 		height: auto;
 		width: 100%;
-		background-position: 240px -128px;
+		background-position: 100% -128px;
 		-webkit-box-shadow: 0 0 10px #000;
 		box-shadow: 0 0 10px #000;
 	}

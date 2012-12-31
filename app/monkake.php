@@ -25,13 +25,7 @@ class M {
 		$_SERVER['PATH_INFO'] = str_replace('/doc-root', '', @$_SERVER['PATH_INFO']);
 		error_reporting(0);
 
-		//ob_start();
-
-		// Define base M application directory
-		//$dirname = dirname(__FILE__);
-
-		// Main app file
-		//require_once($dirname . '/monkake.php');
+		ob_start();
 
 		// Main M configuration file
 		self::LoadConfig($dirname . '/config.php');
@@ -56,7 +50,6 @@ class M {
 		if ( !include_once($controller_file) ) M::Error('Could not load controller ' . $controller_file, TRUE);
 
 		// Include main Monkake controller here:
-		// require_once('../app/controller.php');
 		$html = ob_get_clean();
 
 		echo $html;
@@ -181,7 +174,7 @@ class M {
 	public static function autoload($name) {
 		$file = self::Get('monkake_dir');
 		$loading_file = null;
-		$class_file = $file . self::Get('class_dir') . $name . self::Get('class_append');
+		$class_file = $file . self::Get('class_directory') . $name . self::Get('class_file_append');
 		$loading = null;
 
 		if ( strpos($name, self::Get('controller_append')) === 0 ) {

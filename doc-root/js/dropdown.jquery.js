@@ -155,7 +155,7 @@ $.fn.dropdown = function(options) {
 			}
 
 			$ul.css({top: top + 'px', left: left + 'px'});
-		}
+		};
 
 		$ul.hide();
 
@@ -275,7 +275,7 @@ $.fn.dropdown = function(options) {
 				});
 		}
 	});
-}
+};
 
 /* Helper object. Stores dropdown objects for hiding, etc */
 $.dropdown = {
@@ -307,7 +307,7 @@ $.dropdown = {
 			$ul.hide();
 		}
 	}
-}
+};
 
 /* Helper object. Contains functions for dimensions and position of viewport. */
 if ( !$.viewport ) {
@@ -380,20 +380,20 @@ if ( !$.scrollbarwidth ) {
 		if ( typeof(document.body.scrollbarWidth) != 'undefined' ) return parseInt(document.body.scrollbarWidth);
 
 		var $div = $('<div/>')
-		.css({
-			position: 'absolute',
-			top: '-1000px',
-			left: '-1000px',
-			width: '100px',
-			height: '50px',
-			overflow: 'hidden'
-		});
+			.css({
+				position: 'absolute',
+				top: '-1000px',
+				left: '-1000px',
+				width: '100px',
+				height: '50px',
+				overflow: 'hidden'
+			});
 
 		var $inner = $('<div/>')
-		.css({
-			width: '100%',
-			height: '200px'
-		});
+			.css({
+				width: '100%',
+				height: '200px'
+			});
 
 		$div.append($inner);
 		$(document.body).append($div);
@@ -407,6 +407,6 @@ if ( !$.scrollbarwidth ) {
 		$div.remove();
 		document.body.scrollbarWidth = no_scroll - scroll;
 		return no_scroll - scroll;
-	}
+	};
 }
 })(jQuery);

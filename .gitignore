@@ -6,3 +6,5 @@
 /doc-root/upload
 /doc-root/media
 /subdomains
+/doc-root/css/compressed
+/doc-root/js/compressed
