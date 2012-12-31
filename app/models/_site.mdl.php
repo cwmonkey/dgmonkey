@@ -189,20 +189,35 @@ class _site {
 		return $this->Cache->EchoCache();
 	}
 
-	public function media_url() {
-		return '';
+	public function MediaUrl($path) {
+		if ( !M::Get('use_cdn') ) return $path;
+		$letters = str_split($path);
+		$total = 0;
+		$servers = array(
+			'http://dgmi.mysmilies.com',
+			'http://dgmi.mysmilies.com',
+			'http://dgmi.mysmilies.com',
+			'http://dgmi.mysmilies.com',
+			'http://dgmi.mysmilies.com',
+		);
+		foreach ( $letters as $letter ) {
+			$total += ord($letter) - 32;
+		}
+		$entry = $total % count($servers);
+
+		return $servers[$entry] . trim($path);
 	}
 
 	public function RenderJsFiles($js_files, $add_slashes = false, $defer = true) {
 		$slash = '';
-		$media_url = $this->media_url();
+
 		if ( $add_slashes ) $slash = '\\';
 		if ( !is_array($js_files) ) $js_files = array($js_files);
 
 		if ( !M::Get('minify_js') ) {
 			for ( $i=0; $i < count($js_files); $i++ ) {
 				$file = $js_files[$i];
-				echo '<script type="text/javascript" src="' . $media_url . '/js/' . $file . '" ' . (($defer)?'defer="defer"':'') . '><' . $slash . '/script>';
+				echo '<script type="text/javascript" src="' . $this->MediaUrl('/js/' . $file) . '" ' . (($defer)?'defer="defer"':'') . '><' . $slash . '/script>';
 			}
 			return;
 		}
@@ -234,7 +249,7 @@ class _site {
 				fclose($fp);
 				chmod($filename, 0777);
 			}
-			echo '<script type="text/javascript" src="' . $media_url . '/js/' . $lastmod . '/' . md5(implode(',', $files)) . '.js" ' . (($defer)?'defer="defer"':'') . '><' . $slash . '/script>';
+			echo '<script type="text/javascript" src="' . $this->MediaUrl('/js/' . $lastmod . '/' . md5(implode(',', $files)) . '.js') . '" ' . (($defer)?'defer="defer"':'') . '><' . $slash . '/script>';
 		}
 	}
 
@@ -245,13 +260,12 @@ class _site {
 	}
 
 	public function RenderCssFiles($css_files) {
-		$media_url = $this->media_url();
 		if ( !is_array($css_files) ) $css_files = array($css_files);
 
 		if ( !M::Get('minify_css') ) {
 			$cssextra = ( M::Get('debug') ) ? '?' . time() : '';
 			foreach ( $css_files as $file ) {
-				echo '<link rel="stylesheet" type="text/css" href="' . $media_url . '/css/' . $file . $cssextra . '" />';
+				echo '<link rel="stylesheet" type="text/css" href="' . $this->MediaUrl('/css/' . $file . $cssextra) . '" />';
 			}
 			return;
 		}
@@ -282,7 +296,7 @@ class _site {
 				fclose($fp);
 				chmod($filename, 0777);
 			}
-			echo '<link rel="stylesheet" type="text/css" href="' . $media_url . '/css/' . $lastmod . '/' . md5(implode(',', $files)) . '.css" />';
+			echo '<link rel="stylesheet" type="text/css" href="' . $this->MediaUrl('/css/' . $lastmod . '/' . md5(implode(',', $files)) . '.css') . '" />';
 		}
 	}
 }

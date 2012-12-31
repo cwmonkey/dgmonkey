@@ -4,6 +4,7 @@
 	background-color: #ddd;
 	font-family: Verdana, Arial, Helvetica, sans-serif;
 	border: 2px outset #eee;
+	max-width: 100%
 	}
 
 .datetime_container h3,

@@ -3,6 +3,7 @@
 $debug = false;
 $minify_js = true;
 $minify_css = true;
+$use_cdn = true;
 
 /* M specific configuration */
 
@@ -18,6 +19,7 @@ if ( $_SERVER['HTTP_HOST'] == 'dgmonkey.local' ) {
 	$debug = true;
 	$minify_js = false;
 	$minify_css = false;
+	$use_cdn = false;
 } elseif ( $_SERVER['HTTP_HOST'] == 'dgmonkey.mysmilies.com' ) {
 	$monkake_directory = '/home/monkey/sites/mysmilies/subdomains/dgmonkey/';
 }
@@ -62,6 +64,7 @@ $url_intercepts = array(
 	'/^\/sponsored_players/' => 'sponsored_players',
 	'/^\/post/' => 'post',
 	'/^\/news/' => 'news',
+	'/^\/baskets/' => 'page',
 	);
 
 include($monkake_directory . 'shared/shared.config.php');

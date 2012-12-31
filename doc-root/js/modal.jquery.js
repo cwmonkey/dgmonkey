@@ -406,7 +406,7 @@ $.modal = {
 
 		this.$overlay
 			.css({
-				width: (!$.browser.msie?$html.outerWidth(true) + 'px':'100%'),
+				width: '100%', //(!$.browser.msie?$html.outerWidth(true) + 'px':'100%'),
 				height: dimensions.ph + 'px'
 				//height: '100%'
 				});
@@ -441,7 +441,7 @@ $.modal = {
 
 		this.$overlay
 			.css({
-				width: (!$.browser.msie?$html.outerWidth(true) + 'px':'100%'),
+				width: '100%', //(!$.browser.msie?$html.outerWidth(true) + 'px':'100%'),
 				height: dimensions.ph + 'px',
 				opacity: 0
 				})

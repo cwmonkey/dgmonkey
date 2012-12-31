@@ -1,23 +1,5 @@
 <?php
 
-function get_media_url($path) {
-	$letters = str_split($path);
-	$total = 0;
-	$servers = array(
-		'http://dgmi1.mysmilies.com',
-		'http://dgmi2.mysmilies.com',
-		'http://dgmi3.mysmilies.com',
-		'http://dgmi4.mysmilies.com',
-		'http://dgmi5.mysmilies.com',
-	);
-	foreach ( $letters as $letter ) {
-		$total += ord($letter) - 32;
-	}
-	$entry = $total % count($servers);
-
-	return $servers[$entry] . trim($path);
-}
-
 class M {
 	public static function Init($dirname) {
 		// TODO: Fix all this garbage
