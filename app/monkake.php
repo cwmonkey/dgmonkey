@@ -1,7 +1,7 @@
 <?php
 
 class M {
-	public static function Init($dirname) {
+	public static function Init($dirname, $url = null, $method = null, $route = null) {
 		// TODO: Fix all this garbage
 
 		$_SERVER['PATH_INFO'] = str_replace('/doc-root', '', @$_SERVER['PATH_INFO']);
@@ -17,24 +17,143 @@ class M {
 			self::LoadConfig($dirname . '/local.config.php');
 		}
 
+		if ( $url === null ) $url = explode('?', $_SERVER['REQUEST_URI']);
+		if ( $method === null ) $method = $_SERVER['REQUEST_METHOD'];
+		if ( $route === null ) $route = self::route($url, $method);
+
 		// Get page controller name
-		$page_name = @$_SERVER['PATH_INFO'];
+		// $page_name = @$_SERVER['PATH_INFO'];
 
-		$controller_name = M::GetIntercept($page_name);
+		if ( !$route ) {
+		 	$route = M::Get('site404Route');
+		}
 
-		if ( $controller_name == NULL ) $controller_name = M::Get('site_404_controller');
+		if ( isset($route['forward']) ) {
+			header('Location: ' . $route['forward'], true, 301);
+		} elseif ( !isset($route['controller']) ) {
+		 	$route = M::Get('site404Route');
+		}
+
+		$controller_name = $route['controller'];
 
 		// TODO: Run more validation on the controller name?
 		if ( !$controller_name ) M::Error('Could not locate 404 controller', TRUE);
-		$controller_file = M::Get('controller_directory', NULL, TRUE) . $controller_name . M::Get('controller_file_append');
+		// $controller_file = M::Get('controller_directory', NULL, TRUE) . $controller_name . M::Get('controller_file_append');
+		$controller_class_name = $controller_name . M::Get('controller_append');
 
-		// Include page controller file
-		if ( !include_once($controller_file) ) M::Error('Could not load controller ' . $controller_file, TRUE);
+		if ( class_exists($controller_class_name) ) $controller_class_name::Init($route);
 
 		// Include main Monkake controller here:
 		$html = ob_get_clean();
 
 		echo $html;
+	}
+
+	public static function _r($path, $route, $config) {
+		while (substr($path, 0, 1) == '/') {
+			$path = substr($path, 1);
+		}
+
+		while (substr($route, 0, 1) == '/') {
+			$route = substr($route, 1);
+		}
+
+		if ( $route == '' ) {
+			if ( $path == '' ) {
+				return $config;
+			} else {
+				return false;
+			}
+		}
+
+		//if ( !preg_match_all("/^([^\(]*)?((\((.+)\)))?/", $route, $matches) ) {
+		// if (  ) {}
+		// } else
+		if ( !preg_match_all("/^(\@.+\@)|(([^\(]*)?((\((.+)\)))?)/", $route, $matches) ) {
+			return false;
+		}
+
+		//$path_components = preg_split('/\.|\//', $path);
+		$path_components = preg_split('/\//', $path);
+		$route_components = null;
+		$i = 0;
+
+		if ( $matches[1][0] ) $matches[2][0] = $matches[1][0];
+
+		if ( $matches[2][0] ) {
+			while (substr($matches[2][0], 0, 1) == '/') {
+				$matches[2][0] = substr($matches[2][0], 1);
+			}
+
+			//$route_components = preg_split('/\.|\//', $matches[1][0]);
+			$route_components = preg_split('/\//', $matches[2][0]);
+
+			$good_route = true;
+			$path_components = array_pad($path_components, count($route_components), '');
+
+			foreach ($route_components as $route_component) {
+				if ( $route_component == ':controller' || $route_component == ':action' ) {
+					if ($path_components[$i] != '') {
+						$config[substr($route_component, 1)] = $path_components[$i];
+					} else {
+						return false;
+					}
+				} elseif ( substr($route_component, 0, 1) == ':' ) {
+					if ( $path_components[$i] != '' ) {
+						$config[preg_replace('/(\(|\))/', '', substr($route_component, 1))] = $path_components[$i];
+					} else {
+						return false;
+					}
+				} elseif ( substr($route_component, 0, 1) == '@' ) {
+					if ( preg_match($route_component, $path_components[$i], $matches2) ) {
+						$config[$route_component] = true;
+						$config['regex' . $i] = $route_component;
+						$config['match' . $i] = $path_components[$i];
+					} else {
+						return false;
+					}
+				} elseif ( $route_component == $path_components[$i] ) {
+					$config[$route_component] = true;
+				} else {
+					return false;
+				}
+
+				$i++;
+			}
+		}
+
+		if ( $matches[5][0] ) {
+			$path = implode(array_splice($path_components, $i), '/');
+			$new_config = self::_r($path, $matches[5][0], $config);
+
+			if ( !$new_config ) {
+				return $config;
+			} else {
+				return $new_config;
+			}
+		} else {
+			if ( !$route_components || count($route_components) == count($path_components) ) {
+				return $config;
+			} else {
+				return false;
+			}
+		}
+	}
+
+	public static function route($url, $method) {
+		$path = strtolower($url[0]);
+		$route_config = null;
+
+		while ( substr($path, -1) == '/' ) {
+			$path = substr($path,0,(strlen($path)-1));
+		}
+		$routes = self::Get('routes', array());
+		foreach ( $routes as $route => $config ) {
+			$route_config = self::_r($path, $route, $config);
+			if ( $route_config ) break;
+		}
+
+		return $route_config;
 	}
 
 	// Only static methods/members in this class, disallow instantiation.
@@ -154,24 +273,24 @@ class M {
 	}
 
 	public static function autoload($name) {
-		$file = self::Get('monkake_dir');
+		$file = self::Get('monkake_directory');
 		$loading_file = null;
 		$class_file = $file . self::Get('class_directory') . $name . self::Get('class_file_append');
 		$loading = null;
 
-		if ( strpos($name, self::Get('controller_append')) === 0 ) {
+		if ( strpos($name, self::Get('controller_append')) !== -1 ) {
 			$loading = 'controller';
 			$name = str_replace(self::Get('controller_append'), '', $name);
-		} elseif ( strpos($name, self::Get('model_append')) === 0 ) {
+		} elseif ( strpos($name, self::Get('model_append')) !== -1 ) {
 			$loading = 'model';
 			$name = str_replace(self::Get('model_append'), '', $name);
-		} elseif ( strpos($name, self::Get('view_append')) === 0 ) {
+		} elseif ( strpos($name, self::Get('view_append')) !== -1 ) {
 			$loading = 'view';
 			$name = str_replace(self::Get('view_append'), '', $name);
 		}
 
 		if ( $loading ) {
-			$loading_file = $file . self::Get($loading . '_dir') . $name . self::Get($loading . '_file_append');
+			$loading_file = self::Get($loading . '_directory') . $name . self::Get($loading . '_file_append');
 			if ( !$loading_file || !file_exists($loading_file) || !require_once($loading_file) ) {
 				throw new Exception('Unable to load class: ' . $name . ' as ' . $loading_file);
 			}

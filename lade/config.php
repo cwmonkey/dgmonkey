@@ -32,16 +32,35 @@ $media_url = '/media/lade/';
 
 $cache_directory = $monkake_directory . '_cache/';
 
-$url_intercepts = array(
-	'/^$/' => 'index',
-	'/^\/$/' => 'index',
-	'/^\/home$/' => 'index',
-	'/^\/list$/' => 'list',
-	'/^\/add$/' => 'add',
-	'/^\/delete$/' => 'delete',
-	'/^\/edit$/' => 'edit',
-	'/^\/login$/' => 'login',
-	'/^\/logout$/' => 'logout',
-	);
+$routes = array(
+	'/lade/@^home.*$@' => array(
+		'controller' => 'index',
+		'template' => 'index',
+	),
+	'/lade/@^list.*$@' => array(
+		'controller' => 'list',
+		'template' => 'list',
+	),
+	'/lade/@^add.*$@' => array(
+		'controller' => 'add',
+		'template' => 'add',
+	),
+	'/lade/@^delete.*$@' => array(
+		'controller' => 'delete',
+		'template' => 'delete',
+	),
+	'/lade/@^edit.*$@' => array(
+		'controller' => 'edit',
+		'template' => 'edit',
+	),
+	'/lade/@^login.*$@' => array(
+		'controller' => 'login',
+		'template' => 'login',
+	),
+	'/lade/@^logout.*$@' => array(
+		'controller' => 'logout',
+		'template' => 'logout',
+	),
+);
 
 include($monkake_directory . 'shared/shared.config.php');

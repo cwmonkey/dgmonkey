@@ -1,21 +1,20 @@
 <?php
 
-// Include site specific logic
-require_once(M::Get('model_directory', NULL, TRUE) . '_site.mdl.php');
+class tour_scheduleController extends _siteController {
+	public $PastEvents = array();
 
-// Include page specific logic
-require_once(M::Get('model_directory', NULL, TRUE) . 'tour_schedulePage.mdl.php');
+	public static function InitializePage($route) {
+		self::SetUpcomingEvents();
+		self::SetPastEvents();
+	}
 
-// Set model for view to access
-tour_schedulePage::SetViewModel(new tour_schedulePage());
+	public static function SetPastEvents() {
+		if ( self::$view->EditMode ) {
+			$events = self::Lade()->GetList('event', 'ladedgm_event.scheduled<NOW()', 'ladedgm_event.scheduled', 'DESC');
+		} else {
+			$events = self::Lade()->GetList('event', 'ladedgm_event.scheduled<NOW() && ladedgm_event.scheduled > DATE_SUB(NOW(), INTERVAL 2 YEAR) && ladedgm_event.enabled=1', 'ladedgm_event.scheduled', 'DESC');
+		}
 
-tour_schedulePage::InitializeSite();
-
-tour_schedulePage::SetWordlets();
-tour_schedulePage::SetUpcomingEvents();
-tour_schedulePage::SetPastEvents();
-
-tour_schedulePage::SetControllerFile('tour_schedule.ctrl.php');
-tour_schedulePage::SetViewFile('tour_schedule.view.php');
-
-tour_schedulePage::$view->RenderViewContent();
+		self::$view->PastEvents = $events->Values;
+	}
+}

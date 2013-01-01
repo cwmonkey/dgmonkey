@@ -1,20 +1,44 @@
 <?php
 
-// Include site specific logic
-require_once(M::Get('model_directory', NULL, TRUE) . '_site.mdl.php');
+class postController extends _siteController {
+	public $News = array();
+	public $NewsAddLink;
+	public $Pagination;
 
-// Include page specific logic
-require_once(M::Get('model_directory', NULL, TRUE) . 'postPage.mdl.php');
+	private static $_PageNumber;
+	private static $_PostsPerPage = 10;
 
-// Set model for view to access
-postPage::SetViewModel(new postPage());
+	public static function InitializePage($route) {
+		self::SetNews($route['post_id']);
+	}
 
-postPage::InitializeSite();
+	public static function SetNews($id) {
+		$id = intval($id);
+		if ( !$id ) {
+			header("Location: /");
+			exit;
+		}
 
-postPage::SetNews();
-postPage::SetWordlets();
+		if ( self::$view->EditMode ) {
+			$news = self::Lade()->GetList('news', 'ladedgm_news.id=' . $id, 'ladedgm_news.posted', 'DESC');
+		} else {
+			$news = self::Lade()->GetList('news', 'ladedgm_news.enabled=1 AND ladedgm_news.posted<NOW() AND ladedgm_news.id=' . $id, 'ladedgm_news.posted', 'DESC');
+		}
 
-postPage::SetControllerFile('post.ctrl.php');
-postPage::SetViewFile('post.view.php');
+		if ( !count($news->Values) ) {
+			header("Location: /");
+			exit;
+		}
 
-postPage::$view->RenderViewContent();
+		self::$view->News = $news->Values;
+		self::$view->NewsAddLink = $news->AddLink;
+	}
+}
+
+class NewsItem {
+	public $PostId;
+	public $Title;
+	public $Created;
+	public $UsrDname;
+	public $Body;
+}

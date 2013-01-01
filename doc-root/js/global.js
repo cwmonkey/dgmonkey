@@ -9,15 +9,24 @@ $(function () {
             $nav.addClass('clickedon');
         }
     })
-        .delegate('#nav a', 'click touchstart', function (e) {
+    .delegate('#nav a', 'click touchstart', function (e) {
         e.stopPropagation();
     })
-        .delegate('#nav', 'focusin', function (e) {
+    .delegate('#nav', 'focusin', function (e) {
         $nav.addClass('clickedon');
     })
-        .delegate('#nav', 'focusout', function (e) {
+    .delegate('#nav', 'focusout', function (e) {
         $nav.removeClass('clickedon');
-    });
+    })
+    // tracking
+    .delegate('#store .add_to_cart input', 'click', function() {
+        _gaq.push(['_trackEvent','Internal','Click','Store Add']);
+    })
+    .delegate('#registration .add_to_cart input[name="submit"]', 'click', function() {
+        _gaq.push(['_trackEvent','Internal','Click','Reg Add']);
+    })
+
+    ;
 
     /* Home */
     /*$('#home #nav ul').each(function() {

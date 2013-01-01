@@ -49,22 +49,72 @@ $site_url =  '/';
 
 $cache_directory = $monkake_directory . '_cache/';
 
-$url_intercepts = array(
-	'/^$/' => 'index',
-	'/^\/$/' => 'index',
-	'/^\/[0-9]+$/' => 'index',
-	'/^\/index/' => 'index',
-	'/^\/links/' => 'links',
-	'/^\/gallery/' => 'gallery',
-	'/^\/storeou812/' => 'store',
-	'/^\/courses/' => 'courses',
-	'/^\/contact/' => 'contact',
-	'/^\/registration\/([0-9]+)/' => 'registration',
-	'/^\/tour_schedule/' => 'tour_schedule',
-	'/^\/sponsored_players/' => 'sponsored_players',
-	'/^\/post/' => 'post',
-	'/^\/news/' => 'news',
-	'/^\/baskets/' => 'page',
-	);
+$site404Route = array(
+	'controller' => 'site404',
+	'template' => 'site404',
+	'name' => 'site404',
+);
+
+$routes = array(
+	'' => array(
+		'controller' => 'index',
+		'template' => 'index',
+		'name' => 'home',
+	),
+	'/links' => array(
+		'controller' => 'links',
+		'template' => 'links',
+		'name' => 'links',
+	),
+	'/gallery' => array(
+		'controller' => 'gallery',
+		'template' => 'gallery',
+		'name' => 'gallery',
+	),
+	'/storeou812' => array(
+		'controller' => 'store',
+		'template' => 'store',
+		'name' => 'store',
+	),
+	'/courses' => array(
+		'controller' => 'courses',
+		'template' => 'courses',
+		'name' => 'courses',
+	),
+	'/contact' => array(
+		'controller' => 'contact',
+		'template' => 'contact',
+		'name' => 'contact',
+	),
+	'/registration/:event_id(/:title)' => array(
+		'controller' => 'registration',
+		'template' => 'registration',
+		'name' => 'registration',
+	),
+	'/tour_schedule' => array(
+		'controller' => 'tour_schedule',
+		'template' => 'tour_schedule',
+		'name' => 'tour_schedule',
+	),
+	'/sponsored_players' => array(
+		'controller' => 'sponsored_players',
+		'template' => 'sponsored_players',
+		'name' => 'sponsored_players',
+	),
+	'/post/:post_id' => array(
+		'controller' => 'post',
+		'template' => 'post',
+		'name' => 'post',
+	),
+	'/news' => array(
+		'controller' => 'news',
+		'template' => 'news',
+		'name' => 'news',
+	),
+	'/@^((baskets)|(store_thanks))$@' => array(
+		'controller' => 'page',
+		'template' => 'page',
+	),
+);
 
 include($monkake_directory . 'shared/shared.config.php');

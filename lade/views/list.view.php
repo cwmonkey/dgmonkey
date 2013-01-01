@@ -41,7 +41,7 @@
 			<tr>
 				<? foreach( $page->SectionInfo->Table->Columns as $column ) { ?>
 					<? if ( $column->Listed ) { ?>
-						<th><a href="<?=$page->OrderByLinks[$column]?>"><?=$column->DisplayName?></a></th>
+						<th><a href="<?=@$page->OrderByLinks[$column]?>"><?=$column->DisplayName?></a></th>
 					<? } ?>
 				<? } ?>
 				<? if ( $page->SectionInfo->SubSection != NULL ) { ?>

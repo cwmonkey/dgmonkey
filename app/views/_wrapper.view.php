@@ -77,7 +77,7 @@
 			<? } ?>
 		<!-- /GCMS -->
 		<header id="header">
-			<h1><a href="/"><img src="<?=$view->MediaUrl('/images/global_header.gif')?>" width="727" height="128" alt="Disc Golf Monkey" /></a></h1>
+			<h1><a href="/"><img src="<?=$view->MediaUrl('/images/global_header.png')?>" width="727" height="128" alt="Disc Golf Monkey" /></a></h1>
 			<nav id="nav"><div id="nav_w">
 				<ul>
 					<li id="home_nav"><a href="/"><?=$page->Wordlets->Get('nav_home')?></a></li>
@@ -110,8 +110,8 @@
 	<div id="extras">
 		<ul id="personal_sponsors">
 			<li><a href="http://www.golfdisc.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_millennium_golf_disc.png')?>" alt="Millennium Golf Disc" width="190" height="38"></a></li>
-			<li><a href="http://www.creatordesigns.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_creator_designs.gif')?>" alt="Creator Designs" width="190" height="40"></a></li>
-			<li><a href="http://www.innovadiscs.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_innovadiscs.gif')?>" alt="Innova Discs" width="133" height="40"></a></li>
+			<li><a href="http://www.creatordesigns.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_creator_designs.png')?>" alt="Creator Designs" width="190" height="40"></a></li>
+			<li><a href="http://www.innovadiscs.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_innovadiscs.png')?>" alt="Innova Discs" width="133" height="40"></a></li>
 			<li><a href="http://www.gorilla-boy.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_gbds.png')?>" alt="Gorila Boy" width="94" height="40"></a></li>
 			<li><a href="http://www.nnwainc.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_nnwa.png')?>" alt="NNWA, Inc." width="122" height="45"></a></li>
 		</ul>
@@ -119,7 +119,7 @@
 		<div id="ad">
 			<h4>Monkey Traps - Disc golf baskets hand-made and custom colored</h4>
 			<p>
-				<a href="/baskets"><img src="<?=$view->MediaUrl('/images/home_ad_monkey_traps.gif')?>" alt="Monkey Traps - Disc golf baskets hand-made and custom colored" width="240" height="564" /></a>
+				<a href="/baskets"><img src="<?=$view->MediaUrl('/images/home_ad_monkey_traps.png')?>" alt="Monkey Traps - Disc golf baskets hand-made and custom colored" width="240" height="564" /></a>
 			</p>
 		</div>
 	</div>
@@ -128,15 +128,15 @@
 		<div id="sponsors">
 			<h4>Sponsors:</h4>
 			<ul>
-				<? /* <li><img src="/images/global_sponsors_coors_light.gif" alt="Coors Light" width="94" height="68"></li>
-				<li><img src="/images/global_sponsors_hooters.gif" alt="Hooters" width="115" height="58"></li> */ ?>
+				<? /* <li><img src="/images/global_sponsors_coors_light.png" alt="Coors Light" width="94" height="68"></li>
+				<li><img src="/images/global_sponsors_hooters.png" alt="Hooters" width="115" height="58"></li> */ ?>
 				<li><a href="http://www.vibram.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_vibram.png')?>" alt="Vibram Disc Golf" width="67" height="40"></a></li>
-				<li><a href="http://www.qtsign.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_quality_trim.gif')?>" alt="Quality Trim &amp; Design" width="114" height="40"></a></li>
-				<li><a href="http://discsunlimited.net"><img src="<?=$view->MediaUrl('/images/global_sponsors_discsunlimited.gif')?>" alt="Discs Unlimited" width="105" height="40"></a></li>
+				<li><a href="http://www.qtsign.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_quality_trim.png')?>" alt="Quality Trim &amp; Design" width="114" height="40"></a></li>
+				<li><a href="http://discsunlimited.net"><img src="<?=$view->MediaUrl('/images/global_sponsors_discsunlimited.png')?>" alt="Discs Unlimited" width="105" height="40"></a></li>
 				<li><a href="http://www.keenfootwear.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_keen.png')?>" alt="Keen" width="122" height="40"></a></li>
 				<li><a href="http://www.mauijim.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_mauijim.png')?>" alt="Maui Jim" width="85" height="40"></a></li>
 				<? //<li><a href="http://mrdiscgolf.com/"><img src="/images/global_sponsors_mrdiscgolf.png" alt="Mr. DiscGolf" width="85" height="102"></a></li> ?>
-				<? /* <li><a href="http://gdstour.com/"><img src="/images/global_sponsors_gateway.gif" alt="Gateway" width="125" height="40"></a></li> */ ?>
+				<? /* <li><a href="http://gdstour.com/"><img src="/images/global_sponsors_gateway.png" alt="Gateway" width="125" height="40"></a></li> */ ?>
 			</ul>
 		</div>
 		<p>&copy; <?=date('Y')?> <?=$page->Wordlets->Get('copyright_by')?></p>

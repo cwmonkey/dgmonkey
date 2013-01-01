@@ -25,7 +25,6 @@ RewriteRule ^js/[0-9]+/(.*)$ /js/compressed/$1 [L]
 RewriteRule ^$ /doc-root/index.php [nc,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f
-RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^lade/(.*)$ /doc-root/lade/index.php/$1 [nc,L]
 
 RewriteCond %{REQUEST_FILENAME} !-f

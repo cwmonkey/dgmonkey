@@ -1,6 +1,5 @@
 <?php
 $page->BodyId = 'page';
-$page->BodyClass = '';
 $page->Section = 'page';
 $page->Title = $page->Wordlets->GetWordlet("page_title");
 

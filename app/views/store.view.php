@@ -42,11 +42,17 @@ $page->SetWrapperFile('_wrapper.view.php');
 
 				<input type="hidden" name="business" value="discgolfer8@yahoo.com">
 				<input type="hidden" name="currency_code" value="USD">
+
 				<p class="image">
 					<a href="<?=$gallery_item['imgpath']?>" title="<?=htmlspecialchars($gallery_item['title'])?>"><?=$gallery_item['imgtag']?></a>
 				</p>
+
 				<div class="description cms">
-					<h3><input type="hidden" name="item_name" value="<?=htmlspecialchars($gallery_item['title'])?>"><?=htmlspecialchars($gallery_item['title'])?></h3>
+					<p>
+						<input type="hidden" name="item_name" value="<?=htmlspecialchars($gallery_item['title'])?>">
+						<a href="<?=$gallery_item['url']?>"><?=htmlspecialchars($gallery_item['title'])?></a>
+					</p>
+
 					<? if ( $gallery_item['description'] ): ?>
 						<p class="text"><?=$gallery_item['description']?></p>
 					<? endif ?>
