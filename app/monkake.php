@@ -275,16 +275,16 @@ class M {
 	public static function autoload($name) {
 		$file = self::Get('monkake_directory');
 		$loading_file = null;
-		$class_file = $file . self::Get('class_directory') . $name . self::Get('class_file_append');
+		$class_file = self::Get('class_directory') . $name . self::Get('class_file_append');
 		$loading = null;
 
-		if ( strpos($name, self::Get('controller_append')) !== -1 ) {
+		if ( strpos($name, self::Get('controller_append')) !== false ) {
 			$loading = 'controller';
 			$name = str_replace(self::Get('controller_append'), '', $name);
-		} elseif ( strpos($name, self::Get('model_append')) !== -1 ) {
+		} elseif ( strpos($name, self::Get('model_append')) !== false ) {
 			$loading = 'model';
 			$name = str_replace(self::Get('model_append'), '', $name);
-		} elseif ( strpos($name, self::Get('view_append')) !== -1 ) {
+		} elseif ( strpos($name, self::Get('view_append')) !== false ) {
 			$loading = 'view';
 			$name = str_replace(self::Get('view_append'), '', $name);
 		}

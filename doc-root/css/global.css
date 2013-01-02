@@ -873,6 +873,11 @@ hr {
 	#nav #home_nav {
 		display: none;
 	}
+
+
+	.cms pre {
+		overflow-x: scroll;
+	}
 }
 
 @media all and (max-width: 539px) {
