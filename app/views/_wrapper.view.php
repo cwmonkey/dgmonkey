@@ -30,14 +30,16 @@
 </head>
 <body id="<?=$page->BodyId ?>" class="<?=$page->BodyClass?>">
 
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+<? if ( !$page->EditMode ): ?>
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));</script>
+<? endif ?>
 
 <div id="main">
 	<div id="main_w"><div id="main_e">
@@ -153,6 +155,8 @@
 		'modal.jquery.js',
 		'dropdown.jquery.js',
 
+		'lib/rangy-core.js',
+		'lib/rangy-selectionsaverestore.js',
 		'autosize.jquery.js',
 		'datetime.jquery.js',
 		'jquery.form.js',
@@ -165,6 +169,8 @@
 
 		'global.js',
 
+		'lib/rangy-core.js',
+		'lib/rangy-selectionsaverestore.js',
 		'autosize.jquery.js',
 		'datetime.jquery.js',
 		'jquery.form.js',

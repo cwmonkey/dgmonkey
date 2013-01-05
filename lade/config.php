@@ -53,6 +53,10 @@ $routes = array(
 		'controller' => 'edit',
 		'template' => 'edit',
 	),
+	'/lade/@^single_edit.*$@' => array(
+		'controller' => 'single_edit',
+		'template' => 'single_edit',
+	),
 	'/lade/@^login.*$@' => array(
 		'controller' => 'login',
 		'template' => 'login',

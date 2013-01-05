@@ -111,7 +111,7 @@ $routes = array(
 		'template' => 'news',
 		'name' => 'news',
 	),
-	'/@^((baskets)|(store_thanks))$@' => array(
+	'/:page_name@^((baskets)|(store_thanks))$@' => array(
 		'controller' => 'page',
 		'template' => 'page',
 	),

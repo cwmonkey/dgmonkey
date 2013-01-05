@@ -2,30 +2,42 @@ $(function () {
     var $body = $('body');
     var $nav = $('#nav');
 
-    $body.delegate('#nav', 'click touchstart', function () {
-        if ($nav.is('.clickedon')) {
-            $nav.removeClass('clickedon');
-        } else {
-            $nav.addClass('clickedon');
-        }
-    })
-    .delegate('#nav a', 'click touchstart', function (e) {
-        e.stopPropagation();
-    })
-    .delegate('#nav', 'focusin', function (e) {
-        $nav.addClass('clickedon');
-    })
-    .delegate('#nav', 'focusout', function (e) {
-        $nav.removeClass('clickedon');
-    })
-    // tracking
-    .delegate('#store .add_to_cart input', 'click', function() {
-        _gaq.push(['_trackEvent','Internal','Click','Store Add']);
-    })
-    .delegate('#registration .add_to_cart input[name="submit"]', 'click', function() {
-        _gaq.push(['_trackEvent','Internal','Click','Reg Add']);
-    })
+    var click = 'click';
+    var is_touchmove = false;
+    if ( 'ontouchend' in document.documentElement ) click = 'touchend';
 
+    $body
+        .delegate('#nav', 'touchmove', function () {
+            is_touchmove = true;
+        })
+        .delegate('#nav', click, function () {
+            if ( click == 'touchend' && is_touchmove ) {
+                is_touchmove = false;
+                return true;
+            }
+
+            if ($nav.is('.clickedon')) {
+                $nav.removeClass('clickedon');
+            } else {
+                $nav.addClass('clickedon');
+            }
+        })
+        .delegate('#nav a', click, function (e) {
+            e.stopPropagation();
+        })
+        .delegate('#nav', 'focusin', function (e) {
+            $nav.addClass('clickedon');
+        })
+        .delegate('#nav', 'focusout', function (e) {
+            $nav.removeClass('clickedon');
+        })
+        // tracking
+        .delegate('#store .add_to_cart input', 'click', function() {
+            _gaq.push(['_trackEvent','Internal','Click','Store Add']);
+        })
+        .delegate('#registration .add_to_cart input[name="submit"]', 'click', function() {
+            _gaq.push(['_trackEvent','Internal','Click','Reg Add']);
+        })
     ;
 
     /* Home */

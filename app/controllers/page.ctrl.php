@@ -4,7 +4,7 @@ class pageController extends _siteController {
 	public static $page_name;
 
 	public static function Init($route) {
-		$route['name'] = 'page_' . $route['match0'];
+		$route['name'] = 'page_' . $route['page_name'];
 		parent::Init($route);
 	}
 

@@ -69,7 +69,9 @@ class M {
 		//if ( !preg_match_all("/^([^\(]*)?((\((.+)\)))?/", $route, $matches) ) {
 		// if (  ) {}
 		// } else
-		if ( !preg_match_all("/^(\@.+\@)|(([^\(]*)?((\((.+)\)))?)/", $route, $matches) ) {
+		$check = preg_match_all("/^(([^\(]*)?((\((.+)\)))?).+/", $route, $matches);
+
+		if ( !$check ) {
 			return false;
 		}
 
@@ -77,16 +79,17 @@ class M {
 		$path_components = preg_split('/\//', $path);
 		$route_components = null;
 		$i = 0;
+		$match = $matches[0][0];
 
-		if ( $matches[1][0] ) $matches[2][0] = $matches[1][0];
+		//if ( $matches[1][0] ) $match = $matches[1][0];
 
-		if ( $matches[2][0] ) {
-			while (substr($matches[2][0], 0, 1) == '/') {
-				$matches[2][0] = substr($matches[2][0], 1);
+		if ( $match ) {
+			while (substr($match, 0, 1) == '/') {
+				$match = substr($match, 1);
 			}
 
 			//$route_components = preg_split('/\.|\//', $matches[1][0]);
-			$route_components = preg_split('/\//', $matches[2][0]);
+			$route_components = preg_split('/\//', $match);
 
 			$good_route = true;
 			$path_components = array_pad($path_components, count($route_components), '');
@@ -98,17 +101,19 @@ class M {
 					} else {
 						return false;
 					}
-				} elseif ( substr($route_component, 0, 1) == ':' ) {
-					if ( $path_components[$i] != '' ) {
-						$config[preg_replace('/(\(|\))/', '', substr($route_component, 1))] = $path_components[$i];
-					} else {
-						return false;
-					}
-				} elseif ( substr($route_component, 0, 1) == '@' ) {
-					if ( preg_match($route_component, $path_components[$i], $matches2) ) {
+				} elseif ( strstr($route_component, '@') ) {
+					$findat = strpos($route_component, '@');
+					if ( preg_match(substr($route_component, $findat), $path_components[$i], $matches2) ) {
 						$config[$route_component] = true;
 						$config['regex' . $i] = $route_component;
 						$config['match' . $i] = $path_components[$i];
+						$config[substr($route_component, 1, $findat - 1)] = $path_components[$i];
+					} else {
+						return false;
+					}
+				} elseif ( substr($route_component, 0, 1) == ':' ) {
+					if ( $path_components[$i] != '' ) {
+						$config[preg_replace('/(\(|\))/', '', substr($route_component, 1))] = $path_components[$i];
 					} else {
 						return false;
 					}
@@ -122,6 +127,7 @@ class M {
 			}
 		}
 
+		// I forget what this was for :\
 		if ( $matches[5][0] ) {
 			$path = implode(array_splice($path_components, $i), '/');
 			$new_config = self::_r($path, $matches[5][0], $config);

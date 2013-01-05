@@ -110,6 +110,17 @@ array(
 				'DefaultAscDesc' => 'asc',
 			),
 			array(
+				'Name' => 'wysiwyg',
+				'SimpleName' => 'wysiwyg',
+				'DisplayName' => 'wysiwyg',
+				'Listed' => true,
+				'Editable' => true,
+				'Addable' => true,
+				'Boolean' => true,
+				'DefaultAscDesc' => 'asc',
+				'DefaultValue' => '0',
+			),
+			array(
 				'Name' => 'value',
 				'SimpleName' => 'value',
 				'DisplayName' => 'Value',

@@ -1,4 +1,4 @@
-<form enctype="multipart/form-data" action="<?=$form->Action?>" method="post">
+<form enctype="multipart/form-data" action="<?=$form->Action?>" method="post" class="<?=$page->SectionInfo->Name?>">
 	<div class="header">
 		<? if ( $form->Revisions ): ?>
 			<div class="revisions">

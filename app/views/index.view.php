@@ -85,18 +85,20 @@ $page->SetWrapperFile('_wrapper.view.php');
 </div>
 <? endif; ?>
 
-<div class="news_item" id="follow">
-	<div class="post">
-		<div class="cms">
-			<a href="https://twitter.com/DiscGolfMonkey" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @DiscGolfMonkey</a>
-			<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<? if ( !$page->EditMode ): ?>
+	<div class="news_item" id="follow">
+		<div class="post">
+			<div class="cms">
+				<a href="https://twitter.com/DiscGolfMonkey" class="twitter-follow-button" data-show-count="false" data-lang="en">Follow @DiscGolfMonkey</a>
+				<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
 
-			<div id="facebook_like">
-				<div class="fb-like" data-layout="button_count" data-href="http://www.facebook.com/DiscGolfMonkey" data-send="false" data-width="100" data-show-faces="false"></div>
+				<div id="facebook_like">
+					<div class="fb-like" data-layout="button_count" data-href="http://www.facebook.com/DiscGolfMonkey" data-send="false" data-width="100" data-show-faces="false"></div>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
+<? endif ?>
 
 <? foreach ( $page->News as $news_item ): ?> 
 	<div class="news_item">

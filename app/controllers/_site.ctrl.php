@@ -316,9 +316,10 @@ class _siteController {
 		if ( !is_array($js_files) ) $js_files = array($js_files);
 
 		if ( !M::Get('minify_js') ) {
+			$jsextra = ( M::Get('debug') ) ? '?' . time() : '';
 			for ( $i=0; $i < count($js_files); $i++ ) {
 				$file = $js_files[$i];
-				echo '<script type="text/javascript" src="' . $this->MediaUrl('/js/' . $file) . '" ' . (($defer)?'defer="defer"':'') . '><' . $slash . '/script>';
+				echo '<script type="text/javascript" src="' . $this->MediaUrl('/js/' . $file) . $jsextra . '" ' . (($defer)?'defer="defer"':'') . '><' . $slash . '/script>';
 			}
 			return;
 		}

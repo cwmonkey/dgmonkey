@@ -3,7 +3,7 @@
 .gcms_content select,
 .gcms_content textarea {
 	font-family: Verdana, Arial, Helvetica, sans-serif;
-	font-size: 10px;
+	/*font-size: 10px;*/
 	-webkit-box-sizing: border-box;
 	-moz-box-sizing: border-box;
 	-ms-box-sizing: border-box;
@@ -345,3 +345,31 @@
 * html .gcms_textarea_autosize {
 	cursor: hand;
 	}
+
+.wysiwyg_ctrl_container a {
+	display: inline-block;
+	border: 2px solid #ccc;
+	background: #eee;
+	padding: 2px;
+	color: #000;
+	text-decoration: none;
+	margin: 0 5px 5px 0;
+}
+
+.wysiwyg_container {
+	background: #000;
+}
+
+.wysiwyg_container .wysiwyg_ctrl_container {
+	background: #eee;
+}
+
+.wysiwyg_container .wysiwyg_textarea,
+.wysiwyg_container .wysiwyg_html {
+	background: #fff;
+}
+
+.wysiwyg_container .wysiwyg_html {
+	padding: 5px;
+}
+
