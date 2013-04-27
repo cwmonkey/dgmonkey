@@ -599,7 +599,17 @@ array(
 				'Addable' => true,
 				'Boolean' => true,
 				'DefaultAscDesc' => 'asc',
-				'DefaultValue' => '1',
+				'DefaultValue' => '0',
+			),
+			array(
+				'Name' => 'closed_message',
+				'SimpleName' => 'closed_message',
+				'DisplayName' => 'Registration Closed Message',
+				'Listed' => true,
+				'Editable' => true,
+				'Addable' => true,
+				'DefaultAscDesc' => 'asc',
+				'DefaultValue' => 'Registration is not yet open',
 			),
 			array(
 				'Name' => 'signup',
@@ -684,6 +694,7 @@ array(
 				'Addable' => true,
 				'DefaultAscDesc' => 'asc',
 				'FormNote' => 'Example: 45.00',
+				'DefaultValue' => '45.00',
 			),
 			array(
 				'Name' => 'priceadv',
@@ -694,6 +705,7 @@ array(
 				'Addable' => true,
 				'DefaultAscDesc' => 'asc',
 				'FormNote' => 'Example: 40.00',
+				'DefaultValue' => '40.00',
 			),
 			array(
 				'Name' => 'pricerec',
@@ -704,6 +716,7 @@ array(
 				'Addable' => true,
 				'DefaultAscDesc' => 'asc',
 				'FormNote' => 'Example: 35.00',
+				'DefaultValue' => '35.00',
 			),
 			array(
 				'Name' => 'pricejr',
@@ -714,6 +727,7 @@ array(
 				'Addable' => true,
 				'DefaultAscDesc' => 'asc',
 				'FormNote' => 'Example: 30.00',
+				'DefaultValue' => '30.00',
 			),
 			array(
 				'Name' => 'discs',
@@ -725,6 +739,17 @@ array(
 				'DefaultAscDesc' => 'asc',
 				'InputType' => 'textarea',
 				'FormNote' => 'Put each disc selection on a new line',
+			),
+			array(
+				'Name' => 'tour_stop',
+				'SimpleName' => 'tour_stop',
+				'DisplayName' => 'This IS a tour stop',
+				'Listed' => true,
+				'Editable' => true,
+				'Addable' => true,
+				'Boolean' => true,
+				'DefaultAscDesc' => 'asc',
+				'DefaultValue' => '1',
 			),
 			array(
 				'Name' => 'enabled',

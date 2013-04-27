@@ -26,14 +26,14 @@ $page->SetWrapperFile('_wrapper.view.php');
 
 	<dl class="schedule">
 		<? foreach ( $page->UpcomingEvents as $event_item ): ?> 
-			<dt>
+			<dt class="<?=($event_item['tour_stop'])?'':'not_tour'?>">
 				<? if ( $event_item['month'] ): ?>
 					<?=date('M', strtotime($event_item['scheduled']))?>
 				<? else: ?>
 					<?=date('M jS, o', strtotime($event_item['scheduled']))?>
 				<? endif; ?>
 
-				<? if ( $event_item['scheduleend'] ): ?>
+				<? if ( $event_item['scheduleend'] && $event_item['scheduleend'] != $event_item['scheduled'] ): ?>
 					-
 					<? if ( $event_item['month'] ): ?>
 						<?=date('M', strtotime($event_item['scheduleend']))?>
@@ -42,37 +42,46 @@ $page->SetWrapperFile('_wrapper.view.php');
 					<? endif; ?>
 				<? endif; ?>
 			</dt>
-			<dd>
-				<? if ( $event_item['link'] ): ?>
-					<p><a href="<?=$event_item['link']?>"><?=$event_item['title']?> - <?=$event_item['location']?></a></p>
-				<? elseif ( $event_item['flyerimg'] ): ?>
-					<p><a href="<?=$event_item['flyerimg']?>"><?=$event_item['title']?> - <?=$event_item['location']?></a></p>
-				<? elseif ( $event_item['flyerpdf'] ): ?>
-					<p><a href="<?=$event_item['flyerpdf']?>"><?=$event_item['title']?> - <?=$event_item['location']?></a></p>
-				<? else: ?>
-					<p><?=$event_item['title']?> - <?=$event_item['location']?></p>
-				<? endif; ?>
+			<dd class="<?=($event_item['tour_stop'])?'':'not_tour'?>">
+				<p>
+					<? if ( $event_item['link'] ): ?>
+						<a href="<?=$event_item['link']?>"><?=$event_item['title']?> - <?=$event_item['location']?></a>
+					<? elseif ( $event_item['flyerimg'] ): ?>
+						<a href="<?=$event_item['flyerimg']?>"><?=$event_item['title']?> - <?=$event_item['location']?></a>
+					<? elseif ( $event_item['flyerpdf'] ): ?>
+						<a href="<?=$event_item['flyerpdf']?>"><?=$event_item['title']?> - <?=$event_item['location']?></a>
+					<? else: ?>
+						<?=$event_item['title']?> - <?=$event_item['location']?>
+					<? endif; ?>
 
-				<? if ( $event_item['directions'] ): ?>
-					<p><a href="<?=$event_item['directions']?>">Directions</a></p>
-				<? endif; ?>
+					<? if ( !$event_item['tour_stop'] ): ?>
+						(not a tour stop)
+					<? endif ?>
+				</p>
 
-				<? if ( $event_item['flyerimg'] ): ?>
-					<p><a href="<?=$event_item['flyerimg']?>">Flyer</a></p>
-				<? endif; ?>
 
-				<? if ( $event_item['flyerpdf'] ): ?>
-					<p><a href="<?=$event_item['flyerpdf']?>">PDF Flyer</a></p>
-				<? endif; ?>
+				<? if ( $event_item['tour_stop'] ): ?>
+					<? if ( $event_item['directions'] ): ?>
+						<p><a href="<?=$event_item['directions']?>">Directions</a></p>
+					<? endif; ?>
 
-				<? if ( !$event_item['signupenabled'] ): ?>
-					<p>Registration closed!</p>
-				<? elseif ( $event_item['signup'] ): ?>
-					<p><a href="<?=$event_item['signup']?>">Click here to register!</a></p>
-				<? else: ?>
-					<p>
-						<a href="/registration/<?=$event_item['id']?>/<?=urlencode($event_item['title'])?>">Click here to register!</a>
-					</p>
+					<? if ( $event_item['flyerimg'] ): ?>
+						<p><a href="<?=$event_item['flyerimg']?>">Flyer</a></p>
+					<? endif; ?>
+
+					<? if ( $event_item['flyerpdf'] ): ?>
+						<p><a href="<?=$event_item['flyerpdf']?>">PDF Flyer</a></p>
+					<? endif; ?>
+
+					<? if ( !$event_item['signupenabled'] ): ?>
+						<p><?=($event_item['closed_message'])?$event_item['closed_message']:'Registration is not open'?></p>
+					<? elseif ( $event_item['signup'] ): ?>
+						<p><a href="<?=$event_item['signup']?>">Click here to register!</a></p>
+					<? else: ?>
+						<p>
+							<a href="/registration/<?=$event_item['id']?>/<?=urlencode($event_item['title'])?>">Click here to register!</a>
+						</p>
+					<? endif; ?>
 				<? endif; ?>
 				<? if ($page->EditMode) { ?>
 					<p>

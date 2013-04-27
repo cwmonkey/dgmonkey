@@ -277,6 +277,11 @@ hr {
 .movie_toolbar {
 	display: block;
 	}
+
+.not_tour {
+	opacity: .8;
+	font-size: .9em;
+}
 	/* /Classes ------------------------------------------------ */
 
 	/* 2.3) ID's ----------------------------------------------- */
@@ -519,6 +524,10 @@ hr {
 #home .schedule dd p {
 	padding-bottom: 10px;
 	}
+
+#home .schedule dd.not_tour p {
+	padding-bottom: 8px;
+}
 
 #home .cms {
 	border-bottom: 1px solid black;
