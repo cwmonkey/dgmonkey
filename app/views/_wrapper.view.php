@@ -136,7 +136,7 @@
 				<li><a href="http://www.qtsign.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_quality_trim.png')?>" alt="Quality Trim &amp; Design" width="114" height="40"></a></li>
 				<li><a href="http://discsunlimited.net"><img src="<?=$view->MediaUrl('/images/global_sponsors_discsunlimited.png')?>" alt="Discs Unlimited" width="105" height="40"></a></li>
 				<li><a href="http://www.keenfootwear.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_keen.png')?>" alt="Keen" width="122" height="40"></a></li>
-				<li><a href="http://www.mauijim.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_mauijim.png')?>" alt="Maui Jim" width="85" height="40"></a></li>
+				<? /* <li><a href="http://www.mauijim.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_mauijim.png')?>" alt="Maui Jim" width="85" height="40"></a></li> */ ?>
 				<? //<li><a href="http://mrdiscgolf.com/"><img src="/images/global_sponsors_mrdiscgolf.png" alt="Mr. DiscGolf" width="85" height="102"></a></li> ?>
 				<? /* <li><a href="http://gdstour.com/"><img src="/images/global_sponsors_gateway.png" alt="Gateway" width="125" height="40"></a></li> */ ?>
 			</ul>
