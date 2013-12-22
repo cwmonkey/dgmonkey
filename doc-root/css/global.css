@@ -908,6 +908,12 @@ hr {
 
 	}
 
+	a {
+		display: inline-block;
+		overflow: hidden;
+		text-overflow: ellipsis;
+	}
+
 	h1 {
 		padding: 0;
 	}
@@ -970,6 +976,16 @@ hr {
 
 	h1 img {
 		visibility: hidden;
+	}
+
+	#personal_sponsors {
+		padding-bottom: 0;
+	}
+
+	#footer {
+		height: auto;
+		padding: 0;
+		background: transparent;
 	}
 }
 /* /MEDIA QUERIES -------------------------------- */
