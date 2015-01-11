@@ -223,7 +223,7 @@ class M {
 	} // Set()
 
 
-	public function LoadConfig($file) {
+	public static function LoadConfig($file) {
 		if ( file_exists($file) ) {
 			require_once($file);
 			self::Set(get_defined_vars());
