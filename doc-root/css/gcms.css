@@ -139,6 +139,7 @@
 	padding-bottom: 3px;
 	}
 
+.gcms_content form input[type="url"],
 .gcms_content form input[type="text"],
 .gcms_content form .type_text input,
 .gcms_content form .type_textarea textarea {
