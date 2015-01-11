@@ -110,12 +110,30 @@
 	</div>
 	
 	<div id="extras">
+		<? if ( $page->EditMode ): ?>
+			<p>
+				<?=$page->SponsorsAddLink?>
+			</p>
+		<? endif; ?>
+
 		<ul id="personal_sponsors">
-			<li><a href="http://www.golfdisc.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_millennium_golf_disc.png')?>" alt="Millennium Golf Disc" width="190" height="38"></a></li>
+			<? /* <li><a href="http://www.golfdisc.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_millennium_golf_disc.png')?>" alt="Millennium Golf Disc" width="190" height="38"></a></li>
 			<li><a href="http://www.creatordesigns.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_creator_designs.png')?>" alt="Creator Designs" width="190" height="40"></a></li>
 			<li><a href="http://www.innovadiscs.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_innovadiscs.png')?>" alt="Innova Discs" width="133" height="40"></a></li>
 			<li><a href="http://www.gorilla-boy.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_gbds.png')?>" alt="Gorila Boy" width="94" height="40"></a></li>
-			<li><a href="http://www.nnwainc.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_nnwa.png')?>" alt="NNWA, Inc." width="122" height="45"></a></li>
+			<li><a href="http://www.nnwainc.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_nnwa.png')?>" alt="NNWA, Inc." width="122" height="45"></a></li> */ ?>
+
+			<? foreach ( $page->FeaturedSponsors as $item ): ?>
+				<li class="<?=$page->EditMode?' gcms_list_item':''?>">
+					<a href="<?=$item['link']?>"><img src="<?=$view->MediaUrl($item['imgpath'])?>" alt="<?=htmlspecialchars($item['title'])?>" title="<?=htmlspecialchars($item['title'])?>"></a>
+					<? if ($page->EditMode): ?>
+						<p>Enabled: <?=$item['enabled']?'True':'False'?></p>
+						<p>
+							<?=$item['edit_link']?>
+						</p>
+					<? endif; ?>
+				</li>
+			<? endforeach; ?>
 		</ul>
 
 		<div id="ad">
@@ -129,19 +147,24 @@
 	<footer id="footer">
 		<div id="sponsors">
 			<h4>Sponsors:</h4>
+			<? if ( $page->EditMode ): ?>
+				<p>
+					<?=$page->SponsorsAddLink?>
+				</p>
+			<? endif; ?>
+
 			<ul>
-				<? /* <li><img src="/images/global_sponsors_coors_light.png" alt="Coors Light" width="94" height="68"></li>
-				<li><img src="/images/global_sponsors_hooters.png" alt="Hooters" width="115" height="58"></li> */ ?>
-				<li><a href="http://www.vibram.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_vibram.png')?>" alt="Vibram Disc Golf" width="67" height="40"></a></li>
-				<li><a href="http://www.qtsign.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_quality_trim.png')?>" alt="Quality Trim &amp; Design" width="114" height="40"></a></li>
-				<li><a href="http://discsunlimited.net"><img src="<?=$view->MediaUrl('/images/global_sponsors_discsunlimited.png')?>" alt="Discs Unlimited" width="105" height="40"></a></li>
-				<li><a href="http://www.keenfootwear.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_keen.png')?>" alt="Keen" width="122" height="40"></a></li>
-				<li><a href="http://www.dynamicdiscs.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_dynamic_discs.png')?>" alt="Dynamic Discs" width="136" height="40"></a></li>
-				<li><a href="http://www.thejourneypost.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_thejourneypost.png')?>" alt="The Journey Post" width="190" height="40"></a></li>
-				<li><a href="http://www.legacydiscs.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_legacydiscs.png')?>" alt="Legacy Discs" width="74" height="40"></a></li>
-				<? /* <li><a href="http://www.mauijim.com/"><img src="<?=$view->MediaUrl('/images/global_sponsors_mauijim.png')?>" alt="Maui Jim" width="85" height="40"></a></li> */ ?>
-				<? //<li><a href="http://mrdiscgolf.com/"><img src="/images/global_sponsors_mrdiscgolf.png" alt="Mr. DiscGolf" width="85" height="102"></a></li> ?>
-				<? /* <li><a href="http://gdstour.com/"><img src="/images/global_sponsors_gateway.png" alt="Gateway" width="125" height="40"></a></li> */ ?>
+				<? foreach ( $page->Sponsors as $item ): ?>
+					<li class="<?=$page->EditMode?' gcms_list_item':''?>">
+						<a href="<?=$item['link']?>"><img src="<?=$view->MediaUrl($item['imgpath'])?>" alt="<?=htmlspecialchars($item['title'])?>" title="<?=htmlspecialchars($item['title'])?>"></a>
+						<? if ($page->EditMode): ?>
+							<p>Enabled: <?=$item['enabled']?'True':'False'?></p>
+							<p>
+								<?=$item['edit_link']?>
+							</p>
+						<? endif; ?>
+					</li>
+				<? endforeach; ?>
 			</ul>
 		</div>
 		<p>&copy; <?=date('Y')?> <?=$page->Wordlets->Get('copyright_by')?></p>

@@ -21,6 +21,9 @@ class _siteController {
 	public $MediaUrl;
 	public $UpcomingEvents;
 	public $UpcomingEventsAddLink;
+	public $Sponsors;
+	public $FeaturedSponsors;
+	public $SponsorsAddLink;
 
 	public static function SetViewModel($object) {
 		self::$view = $object;
@@ -101,11 +104,42 @@ class _siteController {
 		$view->Wordlets->AddWordlets("site");
 		$view->RootTitle = $view->Wordlets->GetWordlet('root_title');
 
+// Update timezone for new server
+$now = new DateTime();
+$mins = $now->getOffset() / 60;
+
+$sgn = ($mins < 0 ? -1 : 1);
+$mins = abs($mins);
+$hrs = floor($mins / 60);
+$mins -= $hrs * 60;
+
+$offset = sprintf('%+d:%02d', $hrs*$sgn, $mins);
+
+$query = "SET time_zone='$offset';";
+
+$db_info->_conn->GetResult($query);
+
 		if ( isset($route['name']) ) $view->Wordlets->AddWordlets($route['name']);
 /*-- /GCMS --*/
+
+		self::SetSponsors();
 	}
 
 	public static function InitializePage($route) {}
+
+	public static function SetSponsors() {
+		if ( self::$view->EditMode ) {
+			$sponsors = self::Lade()->GetList('sponsor', 'featured=0', 'ladedgm_sponsor.pos', 'ASC');
+			$featured_sponsors = self::Lade()->GetList('sponsor', 'featured=1', 'ladedgm_sponsor.pos', 'ASC');
+		} else {
+			$sponsors = self::Lade()->GetList('sponsor', 'featured=0 AND enabled=1', 'ladedgm_sponsor.pos', 'ASC');
+			$featured_sponsors = self::Lade()->GetList('sponsor', 'featured=1 AND enabled=1', 'ladedgm_sponsor.pos', 'ASC');
+		}
+
+		self::$view->Sponsors = $sponsors->Values;
+		self::$view->FeaturedSponsors = $featured_sponsors->Values;
+		self::$view->SponsorsAddLink = $sponsors->AddLink;
+	}
 
 	public static function SetUpcomingEvents() {
 		if ( self::$view->EditMode ) {
@@ -295,11 +329,11 @@ class _siteController {
 		$letters = str_split($path);
 		$total = 0;
 		$servers = array(
+			'http://discgolfmonkey.com',
+			/* 'http://dgmi.mysmilies.com',
 			'http://dgmi.mysmilies.com',
 			'http://dgmi.mysmilies.com',
-			'http://dgmi.mysmilies.com',
-			'http://dgmi.mysmilies.com',
-			'http://dgmi.mysmilies.com',
+			'http://dgmi.mysmilies.com', */
 		);
 		foreach ( $letters as $letter ) {
 			$total += ord($letter) - 32;

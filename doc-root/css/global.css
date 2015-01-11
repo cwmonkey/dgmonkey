@@ -364,7 +364,6 @@ hr {
 #footer {
 	width: 880px;
 	text-align: center;
-	height: 281px;
 	line-height: 40px;
 	overflow: hidden;
 	clear: both;
@@ -374,34 +373,25 @@ hr {
 
 #sponsors {
 	clear: both;
-	height: 241px;
 	overflow: hidden;
 	}
 
 #sponsors ul {
 	width: 600px;
+	display: inline-block;
 	}
 
 #sponsors ul li {
 	padding-bottom: 10px;
+	display: inline-block;
+	vertical-align: top;
+	padding-right: 10px;
 	}
 
+#sponsors p,
 #sponsors h4 {
 	clear: both;
 	display: block;
-	}
-
-#sponsors * {
-	display: inline-block;
-	vertical-align: top;
-	/* height: 40px; */
-	padding-right: 5px;
-	}
-* html #sponsors * {
-	display: inline;
-	}
-*:first-child+html #sponsors * {
-	display: inline;
 	}
 
 #modal_overlay {

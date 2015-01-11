@@ -1,6 +1,7 @@
 <?php
 
 $debug = false;
+$dev = false;
 $minify_js = true;
 $minify_css = true;
 $use_cdn = true;
@@ -14,9 +15,10 @@ $fatal_error_message =  'An error has occured whie processing your request.';
 $monkake_directory = '/home/monkey/sites/dgmonkey/';
 
 if ( $_SERVER['HTTP_HOST'] == 'dgmonkey.local' ) {
-	$monkake_directory = 'c:/wamp/www/sites/dgmonkey/';
+	$monkake_directory = 'e:/wamp/www/sites/dgmonkey/';
 	error_reporting(E_ALL);
 	$debug = true;
+	$dev = true;
 	$minify_js = false;
 	$minify_css = false;
 	$use_cdn = false;
@@ -117,4 +119,5 @@ $routes = array(
 	),
 );
 
+include('local.config.php');
 include($monkake_directory . 'shared/shared.config.php');
