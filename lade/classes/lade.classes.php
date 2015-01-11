@@ -691,10 +691,9 @@ class LadeSection {
 						$this->Value[$column->Name] = $request_value;
 					} elseif ( $column->DefaultValueQuery ) {
 						$result = $this->_conn->GetResult($column->DefaultValueQuery);
-						while ( $row = mysql_fetch_array($result) ) {
-							$value = $row[0];
-							$this->Value[$column->Name] = $value;
-						}
+						$row = mysql_fetch_array($result);
+						$value = $row[0];
+						$this->Value[$column->Name] = $value;
 					} else {
 						$this->Value[$column->Name] = $column->DefaultValue;
 					}
@@ -723,7 +722,7 @@ class LadeSection {
 					$value_filename = str_replace(array('{name}', '{datetime}', '{ext}'), array($filename, time(), $ext), $value_filename);
 					$uploadfile = $uploaddir . $value_filename;
 
-					if ( $image_info[0] > $column->UploadImageDefaultWidthMax && (($im = ImageCreateFromJPEG ($file['tmp_name'])) || ($im = ImageCreateFromPNG ($file['tmp_name'])) || ($im = ImageCreateFromGIF($file['tmp_name']))) ) {
+					if ( $column->UploadImageDefaultWidthMax && $image_info[0] > $column->UploadImageDefaultWidthMax && (($im = ImageCreateFromJPEG ($file['tmp_name'])) || ($im = ImageCreateFromPNG ($file['tmp_name'])) || ($im = ImageCreateFromGIF($file['tmp_name']))) ) {
 						$h = intval($column->UploadImageDefaultWidthMax / $image_info[0] * $image_info[1]);
 						$rim = ImageCreateTrueColor ($column->UploadImageDefaultWidthMax, $h);
 						ImageCopyResampled ($rim, $im, 0, 0, 0, 0, $column->UploadImageDefaultWidthMax, $h, $image_info[0], $image_info[1]);
@@ -807,7 +806,7 @@ class LadeSection {
 				$value_filename = str_replace(array('{name}', '{datetime}', '{ext}'), array($filename, time(), $ext), $value_filename);
 				$uploadfile = $uploaddir . $value_filename;
 
-				if ( $image_info[0] > $column->UploadImageDefaultWidthMax && (($im = ImageCreateFromJPEG ($file['tmp_name'])) || ($im = ImageCreateFromPNG ($file['tmp_name'])) || ($im = ImageCreateFromGIF($file['tmp_name']))) ) {
+				if ( $column->UploadImageDefaultWidthMax && $image_info[0] > $column->UploadImageDefaultWidthMax && (($im = ImageCreateFromJPEG ($file['tmp_name'])) || ($im = ImageCreateFromPNG ($file['tmp_name'])) || ($im = ImageCreateFromGIF($file['tmp_name']))) ) {
 					$h = intval($column->UploadImageDefaultWidthMax / $image_info[0] * $image_info[1]);
 					$rim = ImageCreateTrueColor ($column->UploadImageDefaultWidthMax, $h);
 					ImageCopyResampled ($rim, $im, 0, 0, 0, 0, $column->UploadImageDefaultWidthMax, $h, $image_info[0], $image_info[1]);
