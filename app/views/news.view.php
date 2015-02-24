@@ -91,16 +91,16 @@ $page->SetWrapperFile('_wrapper.view.php');
 					// TODO: Move to model
 					if ( $news_item['plaintext'] ) {
 						$b = trim($news_item['body']);
-		
+
 						$b = str_replace("\302\240", ' ', $b);
-						$b = preg_replace('/([\s])(http:\/\/[^\s]+)/', '$1<a href="$2" target="_blank">$2</a>', $b);
+						$b = preg_replace('/([\s])(https?:\/\/[^\s]+)/', '$1<a href="$2" target="_blank">$2</a>', $b);
 						$b = str_replace("\n\n", '</p><p>', $b);
 						$b = str_replace("\n", '<br/>', $b);
 						$b = str_replace('&', '&amp;', $b);
 						$b = preg_replace('/([^\s]+\@[^\s]+\.[^\s]+)/', '<a href="mailto:$1">$1</a>', $b);
 						$b = preg_replace('/([\s])([a-zA-Z0-9\-\.]+\.com[a-zA-Z0-9\-\.\/]*)/', '$1<a href="http://$2" target="_blank">$2</a>', $b);
 						$b = '<p>' . $b . '</p>';
-		
+
 						$news_item['body'] = $b;
 					}
 					echo $news_item['body'];
