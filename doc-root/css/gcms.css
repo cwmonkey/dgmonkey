@@ -30,7 +30,7 @@
 
 .gcms_wordlet,
 .gcms_list_item {
-	border: 1px dashed blue;
+	outline: 1px dashed blue;
 	display: inline-block;
 	clear: none;
 	cursor: hand;

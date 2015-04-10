@@ -320,16 +320,15 @@ hr {
 	background: #000;
 	color: #fff;
 	float: left;
-	padding: 0 19px 0 0;
 	border-radius: 19px;
 	z-index: 1;
+	padding: 0 10px;
 	}
 
 #nav_w {
 	height: 38px;
 	line-height: 38px;
 	float: left;
-	padding: 0 0 0 19px;
 	overflow: hidden;
 	}
 
@@ -340,7 +339,7 @@ hr {
 #nav li a {
 	display: block;
 	height: 38px;
-	padding: 0 15px;
+	padding: 0 13px;
 	color: #fff;
 	text-decoration: none;
 	float: left;
@@ -888,7 +887,7 @@ hr {
 	}
 }
 
-@media all and (max-width: 349px) {
+@media all and (max-width: 414px) {
 	* {
 		max-width: 100% !important;
 		-webkit-box-sizing: border-box;
@@ -925,7 +924,9 @@ hr {
 	}
 
 	#nav ul {
-		padding-top: 45px;
+		display: table;
+		background: #000;
+		margin-top: 45px;
 	}
 
 	#nav.clickedon {

@@ -73,7 +73,7 @@ $routes = array(
 		'template' => 'gallery',
 		'name' => 'gallery',
 	),
-	'/storeou812' => array(
+	'/store' => array(
 		'controller' => 'store',
 		'template' => 'store',
 		'name' => 'store',

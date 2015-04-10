@@ -83,6 +83,9 @@
 			<nav id="nav"><div id="nav_w">
 				<ul>
 					<li id="home_nav"><a href="/"><?=$page->Wordlets->Get('nav_home')?></a></li>
+					<? if ( $page->Wordlets->GetWordlet('store_enabled') ): ?>
+						<li id="store_nav"><a href="/store"><?=$page->Wordlets->Get('nav_store')?></a></li>
+					<? endif ?>
 					<li id="tour_nav"><a href="/tour_schedule"><?=$page->Wordlets->Get('nav_tour')?></a></li>
 					<li id="contact_nav"><a href="/contact"><?=$page->Wordlets->Get('nav_contact')?></a></li>
 					<li id="sponsored_nav"><a href="/sponsored_players"><?=$page->Wordlets->Get('nav_sponsored')?></a></li>
@@ -94,13 +97,13 @@
 			<? if ( $page->EditMode ): ?>
 				<hr /><br />
 				<a href="/">>home</a>
+				| <a href="/store">>store</a>
 				| <a href="/tour_schedule">>tour</a>
 				| <a href="/contact">>contact</a>
 				| <a href="/sponsored_players">>sponsor</a>
 				| <a href="/courses">>courses</a>
 				| <a href="/gallery">>gallery</a>
 				| <a href="/links">>links</a>
-				| <a href="/storeou812">>store</a>
 			<? endif ?>
 		</header>
 		<hr />
