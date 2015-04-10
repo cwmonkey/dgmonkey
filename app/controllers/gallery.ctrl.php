@@ -4,7 +4,7 @@ class galleryController extends _siteController {
 	public $GalleryImages = array();
 	public $GalleryImageAddLink;
 
-	public static function InitializePage() {
+	public static function InitializePage($route) {
 		self::SetGalleryImages();
 	}
 
