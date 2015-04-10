@@ -13,7 +13,7 @@
 					<? foreach ( $input->Inputs as $subinput ) { ?>
 						<option value="<?=$subinput->Value?>" <?=$subinput->Selected?" selected=\"selected\"":""?>><?=$subinput->DisplayName?></option>
 					<? } ?>
-				</select>                    
+				</select>
 			<? } elseif ( $input->Type == 'textarea' ) { ?>
 				<textarea id="<?=$input->Name?>" name="<?=$input->Name?>"><?=$input->Value?></textarea>
 			<? } elseif ( $input->Type == 'submit' ) { ?>

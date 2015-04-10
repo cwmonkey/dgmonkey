@@ -435,13 +435,17 @@ class LadeSection {
 					$revision_link->Date = $row['revmodified'];
 					$this->_formInfo->Revisions[] = $revision_link;
 				}
-	
+
 				$revision_link = new LadeRevisionLink();
 				$this->_formInfo->Revisions[] = $revision_link;
 			}
 		}
 
 		foreach ( $this->Table->Columns as $column ) {
+			if ( !empty($_GET['hide_' . $column->SimpleName]) ) {
+				continue;
+			}
+
 			if ( ($type == 'edit' && $column->Editable) || ($type == 'add' && $column->Addable) ) {
 				$input = new LadeInput($column->SimpleName, $column->DisplayName, '', $column);
 
@@ -458,6 +462,7 @@ class LadeSection {
 				}
 
 				$input->Type = $column->InputType;
+
 				$input->Inputs = array();
 				if ( isset($column->FormNote) ) $input->Note = $column->FormNote;
 
@@ -501,7 +506,7 @@ class LadeSection {
 					}
 
 					$this->_formInfo->AddInput($input);
-				} elseif ( $column->Boolean ) {
+				} elseif ( $column->Boolean || !empty($_GET[$input->Name . '_boolean']) ) {
 					$input->Type = 'select';
 
 					$sub_inputs = array();
@@ -991,12 +996,12 @@ class LadeWordlet {
 
 		return true;
 	}
-	
-	public function Get($name) {
+
+	public function Get($name, $boolean = false) {
 		if ( isset($this->_values[$name]) ) {
 			$wordlet = $this->_values[$name];
 			if ( $this->_editMode ) {
-				return "</a><span id=\"" . $wordlet->Id . "\" class=\"" . $wordlet->Id . " gcms_wordlet\"><a href=\"" . $wordlet->EditLink . "\" class=\"gcms_link\">Edit</a>" . $wordlet->Value . "</span>";
+				return "</a><span id=\"" . $wordlet->Id . "\" class=\"" . $wordlet->Id . " gcms_wordlet\"><a href=\"" . $wordlet->EditLink . ( $boolean ? '&value_boolean=1&hide_enabled=1' : '' ) . "\" class=\"gcms_link\">Edit</a>" . $wordlet->Value . "</span>";
 			}
 
 			return $wordlet->Value;
@@ -1008,7 +1013,24 @@ class LadeWordlet {
 			return "";
 		}
 	}
-	
+
+	public function GetTag($name, $text, $boolean = false) {
+		if ( isset($this->_values[$name]) ) {
+			$wordlet = $this->_values[$name];
+			if ( $this->_editMode ) {
+				return "</a><span id=\"" . $wordlet->Id . "\" class=\"" . $wordlet->Id . " gcms_wordlet\"><a href=\"" . $wordlet->EditLink . ( $boolean ? '&value_boolean=1&hide_enabled=1' : '' ) . "\" class=\"gcms_link\">Edit</a>" . $text . "</span>";
+			}
+
+			return $wordlet->Value;
+		} elseif ( $this->_editMode ) {
+			$add_link = "/lade/add?section=section&pk=" . $this->_pk() . "&subsection=wordlets&" . $this->_friendlyName . "=" . $name;
+			$value = "</a><span id=\"gcms_" . $this->_lastSectionName . "_" . $name . "\" class=\"gcms_" . $this->_lastSectionName . "_" . $name . " gcms_wordlet\"><a href=\"" . $add_link . "\" class=\"gcms_link\">Add '" . $name . "'</a><em>Add '" . $name . "'</em></span>";
+			return $value;
+		} else {
+			return "";
+		}
+	}
+
 	public function GetWordlet($name) {
 		if ( isset($this->_values[$name]) ) {
 			return $this->_values[$name]->Value;
