@@ -173,8 +173,8 @@ $db_info->_conn->GetResult($query);
 		$this->WrapperFile = self::GetViewFile($name);
 	}
 
-	public static function ResizeStoreImage($src, $alt = '') {
-		return self::ResizeImage(M::Get('docroot_directory') . $src, M::Get('docroot_directory') . '/upload/store/resized/', $alt, 115, 115);
+	public static function ResizeStoreImage($src, $alt = '', $parameters = '') {
+		return self::ResizeImage(M::Get('docroot_directory') . $src, M::Get('docroot_directory') . '/upload/store/resized/', $alt, 115, 115, $parameters);
 	}
 
 	public static function ResizeImage($src, $resize_path, $alt = '', $width = '', $height = '', $parameters = '') {

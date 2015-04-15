@@ -192,6 +192,84 @@ select	{
 	display: block;
 	}
 		/* /CMS ------------------------------------------ */
+		/* cwmModal ------------------------------------------ */
+
+body.cwmModal-showing {
+	overflow: hidden;
+}
+
+.cwmModal-overlay {
+	z-index: 1000;
+	background-color: #000;
+	background-color: rgba(0, 0, 0, 0);
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	transition: background-color .4s ease-in-out;
+}
+
+.cwmModal-overlay.cwmModal-show {
+	background-color: rgba(0, 0, 0, .5);
+}
+
+.cwmModal-content-wrapper {
+	display: table;
+	margin: 3em auto;
+	padding: 2em;
+	background: #fff;
+	border-radius: 1em;
+	position: relative;
+	transition: all .4s ease-in-out;
+	transform: translateY(-100%);
+	opacity: 0;
+}
+
+.cwmModal-show .cwmModal-content-wrapper {
+	transform: translateY(0);
+	opacity: 1;
+}
+
+.cwmModal-content-wrapper .cwmModal-close {
+	font-size: 24px;
+	position: absolute;
+	top: 0;
+	right: 0;
+	text-indent: 2em;
+	overflow: hidden;
+	width: 1em;
+	height: 1em;
+	white-space: nowrap;
+	border: 0;
+	-webkit-appearance: none;
+	box-shadow: none;
+	background-color: transparent;
+	cursor: pointer;
+}
+
+.cwmModal-content-wrapper .cwmModal-close:after {
+	content:"\00d7";
+	position: absolute;
+	left: 0;
+	top: 0;
+	text-indent: 0;
+	width: 1em;
+	height: 1em;
+	line-height: 1em;
+}
+
+.cwmModal-window {
+	z-index: 1050;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+		/* /cwmModal ------------------------------------------ */
 	/* /Special Classes ---------------------------------------- */
 /* /DEFAULTS ------------------------------------------------------------ */
 
@@ -769,6 +847,12 @@ hr {
 
 #store .storeitem .image img {
 	vertical-align: middle;
+}
+
+#store .cwmModal-content .image img {
+	width: auto;
+	height: auto;
+	max-width: 100%;
 }
 
 #store #content .cms form {

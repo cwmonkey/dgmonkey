@@ -56,14 +56,14 @@ $page->SetWrapperFile('_wrapper.view.php');
 					<input type="hidden" name="business" value="discgolfer8@yahoo.com">
 					<input type="hidden" name="currency_code" value="USD">
 
-					<p class="image">
-						<a href="<?=$gallery_item['imgpath']?>" title="<?=htmlspecialchars($gallery_item['title'])?>"><?=$gallery_item['imgtag']?></a>
+					<p>
+						<a class="image" href="#" title="<?=htmlspecialchars($gallery_item['title'])?>" data-large="<?=$gallery_item['imgpath']?>"><?=$gallery_item['imgtag']?></a>
 					</p>
 
 					<div class="description cms">
-						<p>
+						<p class="title">
 							<input type="hidden" name="item_name" value="<?=htmlspecialchars($gallery_item['title'])?>">
-							<a href="<?=$gallery_item['url']?>"><?=htmlspecialchars($gallery_item['title'])?></a>
+							<a href="#"><?=htmlspecialchars($gallery_item['title'])?></a>
 						</p>
 
 						<? if ( $gallery_item['description'] ): ?>

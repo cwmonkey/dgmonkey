@@ -32,9 +32,6 @@ $(function () {
             $nav.removeClass('clickedon');
         })
         // tracking
-        .delegate('#store .add_to_cart input', 'click', function() {
-            _gaq.push(['_trackEvent','Internal','Click','Store Add']);
-        })
         .delegate('#registration .add_to_cart input[name="submit"]', 'click', function() {
             _gaq.push(['_trackEvent','Internal','Click','Reg Add']);
         })
@@ -48,6 +45,32 @@ $(function () {
 		$nav.css({width: 0});
 		$nav.animate({width: width}, 'slow', 'swing', function() { });
 	});*/
+
+    /* Store modals */
+    if ( $body.is('#store') ) {
+        var modal = $.cwmModal.create();
+
+        $body
+            .delegate('.add_to_cart input', 'click', function() {
+                _gaq.push(['_trackEvent','Internal','Click','Store Add']);
+            })
+            .delegate('.storeitem a', 'click', function(e) {
+                e.preventDefault();
+                modal.$content.empty().append($(this).closest('.storeitem').html());
+
+                modal.$content.find('img').each(function() {
+                    var $this = $(this);
+
+                    $this.attr({
+                        height: null,
+                        width: null,
+                        src: $this.data('large')
+                    });
+                });
+
+                modal.show();
+            });
+    }
 
     /* Tournament Registration */
     $body.delegate('#registration #content form', 'submit', function (e) {

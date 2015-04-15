@@ -182,8 +182,8 @@
 <? if ( $page->EditMode ): ?>
 	<? $view->RenderJsFiles(array(
 		'modal.jquery.js',
+		'jquery.cwmModal.js',
 		'dropdown.jquery.js',
-
 		'lib/rangy-core.js',
 		'lib/rangy-selectionsaverestore.js',
 		'autosize.jquery.js',
@@ -194,6 +194,7 @@
 <? elseif ( $page->CmsAccess ): ?>
 	<? $view->RenderJsFiles(array(
 		'modal.jquery.js',
+		'jquery.cwmModal.js',
 		'dropdown.jquery.js',
 
 		'global.js',
@@ -208,8 +209,8 @@
 <? else: ?>
 	<? $view->RenderJsFiles(array(
 		'modal.jquery.js',
+		'jquery.cwmModal.js',
 		'dropdown.jquery.js',
-
 		'global.js'
 	)) ?>
 <? endif ?>
