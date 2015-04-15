@@ -15,7 +15,7 @@
 					<? } ?>
 				</select>
 			<? } elseif ( $input->Type == 'textarea' ) { ?>
-				<textarea id="<?=$input->Name?>" name="<?=$input->Name?>"><?=$input->Value?></textarea>
+				<textarea id="<?=$input->Name?>" name="<?=$input->Name?>"><?=htmlspecialchars($input->Value) ?></textarea>
 			<? } elseif ( $input->Type == 'submit' ) { ?>
 				<input type="submit" id="<?=$input->Name?>" name="<?=$input->Name?>" value="<?=$input->Value?>" />
 			<? } elseif ( $input->Type == 'image' ) { ?>
@@ -37,7 +37,7 @@
 			<? } elseif ( $input->Type == 'none' ) { ?>
 				<?=$input->Value?>
 			<? } else { /* text */ ?>
-				<input type="<?=$input->Type?>" id="<?=$input->Name?>" name="<?=$input->Name?>" value="<?=$input->Value?>" />
+				<input type="<?=$input->Type?>" id="<?=$input->Name?>" name="<?=$input->Name?>" value="<?=htmlspecialchars($input->Value) ?>" />
 			<? } ?>
 		</p>
 	</div>

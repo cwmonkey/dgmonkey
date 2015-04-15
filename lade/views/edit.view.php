@@ -11,9 +11,9 @@
 	<? } ?>
 	<h3>
 		Edit
-		[ <?=( $page->SectionInfo->ParentSection != NULL ) ? $page->SectionInfo->ParentSection->DisplayName . " : " . $page->SectionInfo->ParentSection->Value[$page->SectionInfo->ParentSection->Table->DisplayColumn->Name] . " - " : ""?>
+		[ <?=( $page->SectionInfo->ParentSection != NULL ) ? $page->SectionInfo->ParentSection->DisplayName . " : " . htmlspecialchars($page->SectionInfo->ParentSection->Value[$page->SectionInfo->ParentSection->Table->DisplayColumn->Name]) . " - " : ""?>
 		<?=$page->SectionInfo->DisplayName?> ]
-		<?=$page->SectionInfo->Value[$page->SectionInfo->Table->DisplayColumn->Name]?>
+		<?=htmlspecialchars($page->SectionInfo->Value[$page->SectionInfo->Table->DisplayColumn->Name])?>
 	</h3>
 	<? if ( $page->DatabaseUpdated ) { ?>
 		<p id="gcms_success">Database Updated Successfully</p>
