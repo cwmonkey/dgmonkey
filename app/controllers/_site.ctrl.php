@@ -143,9 +143,9 @@ $db_info->_conn->GetResult($query);
 
 	public static function SetUpcomingEvents() {
 		if ( self::$view->EditMode ) {
-			$events = self::Lade()->GetList('event', 'ladedgm_event.scheduled>=NOW()', 'ladedgm_event.scheduled', 'ASC');
+			$events = self::Lade()->GetList('event', 'ladedgm_event.scheduled >= DATE_SUB(NOW(), INTERVAL 2 DAY)', 'ladedgm_event.scheduled', 'ASC');
 		} else {
-			$events = self::Lade()->GetList('event', 'ladedgm_event.scheduled>=NOW() && ladedgm_event.enabled=1', 'ladedgm_event.scheduled', 'ASC');
+			$events = self::Lade()->GetList('event', 'ladedgm_event.scheduled >= DATE_SUB(NOW(), INTERVAL 2 DAY) && ladedgm_event.enabled=1', 'ladedgm_event.scheduled', 'ASC');
 		}
 		self::$view->UpcomingEvents = $events->Values;
 		self::$view->UpcomingEventsAddLink = $events->AddLink;
