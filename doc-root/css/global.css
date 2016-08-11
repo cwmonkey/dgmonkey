@@ -44,14 +44,13 @@
 
 	/* 1.2) Baseline ------------------------------------------- */
 html {
-	overflow-y: scroll;
 	height: 100%;
 	}
 
 body	{
 	font-family: sans-serif;
 	font-size: 100%;
-	height: 100%;
+	min-height: 100%;
 	}
 	/* /Baseline ----------------------------------------------- */
 
@@ -216,6 +215,7 @@ body.cwmModal-showing {
 
 .cwmModal-content-wrapper {
 	display: table;
+	max-width: 800px;
 	margin: 3em auto;
 	padding: 2em;
 	background: #fff;
@@ -275,11 +275,6 @@ body.cwmModal-showing {
 
 /* 2) SITE SPECIFIC ----------------------------------------------------- */
 	/* 2.1) Elements ------------------------------------------- */
-html,
-body {
-	/*height: 100%;*/
-	}
-
 body {
 	background: #172d79;
 	}
@@ -818,7 +813,7 @@ hr {
 }
 
 #store .storeitem {
-	text-align: left;
+	text-align: center;
 }
 
 #store .storeitem h3 {
@@ -830,7 +825,7 @@ hr {
 	padding-top: 10px;
 }
 
-#store .storeitem .image {
+#store .storeitem .image a {
 	width: 115px;
 	height: 115px;
 	display: inline-block; *display: inline; zoom: 1;
@@ -845,14 +840,23 @@ hr {
 	display: none;
 }
 
+#store .storeitem .title {
+	min-height: 3em;
+}
+
 #store .storeitem .image img {
 	vertical-align: middle;
+}
+
+#store .cwmModal-content .image {
+	text-align: center;
 }
 
 #store .cwmModal-content .image img {
 	width: auto;
 	height: auto;
 	max-width: 100%;
+	max-height: 70vh;
 }
 
 #store #content .cms form {
@@ -873,7 +877,7 @@ hr {
 	-webkit-flex: 200px 1;
 	margin-left: 10px;
 	margin-top: 10px;
-	max-width: 260px;
+	max-width: 145px;
 }
 
 #store .storeitem h3 {

@@ -16,7 +16,7 @@ class storeController extends _siteController {
 		}
 
 		foreach ( $images->Values as $key => $val ) {
-			$images->Values[$key]['imgtag'] = self::ResizeStoreImage($val['imgpath'], '', 'data-large="' . $val['imgpath'] . '"');
+			$images->Values[$key]['imgtag'] = self::ResizeStoreImage($val['imgpath'], $val['title'], 'data-large="' . $val['imgpath'] . '"');
 			$images->Values[$key]['url'] = '/store/' . $val['id'] . '/' . preg_replace('([^a-zA-Z0-9\-]+)', '-', $val['title']);
 			//$images->Values[$key]['price'] = add_cents_to_decimal($images->Values[$key]['price'], 200);
 		}

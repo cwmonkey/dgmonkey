@@ -7,7 +7,7 @@ $page->Title = $page->Wordlets->GetWordlet('page_title');
 $page->SetWrapperFile('_wrapper.view.php');
 ?>
 
-<? if ( !$page->Wordlets->GetWordlet('store_enabled') && !$page->EditMode ): ?>
+<? if ( !$page->Wordlets->GetWordlet('store_enabled') && !($page->CmsAccess || $page->EditMode) ): ?>
 	<p>We're sorry, the store is closed at the moment. Check back soon!</p>
 <? else: ?>
 	<h2><?=$page->Wordlets->Get('page_title')?></h2>
@@ -56,8 +56,8 @@ $page->SetWrapperFile('_wrapper.view.php');
 					<input type="hidden" name="business" value="discgolfer8@yahoo.com">
 					<input type="hidden" name="currency_code" value="USD">
 
-					<p>
-						<a class="image" href="#" title="<?=htmlspecialchars($gallery_item['title'])?>" data-large="<?=$gallery_item['imgpath']?>"><?=$gallery_item['imgtag']?></a>
+					<p class="image">
+						<a href="#" title="Click to enlarge" data-large="<?=$gallery_item['imgpath']?>"><?=$gallery_item['imgtag']?></a>
 					</p>
 
 					<div class="description cms">

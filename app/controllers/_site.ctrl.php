@@ -247,10 +247,6 @@ $db_info->_conn->GetResult($query);
 
 		$image = '<img src="' . $src . '" alt="' . htmlspecialchars($alt) . '"';
 
-		if ( $alt ) {
-			$image .= ' title=" ' . htmlspecialchars($alt) . ' "';
-		}
-
 		if ( $width && $height ) {
 			$image .= ' width="' . $width . '" height="' . $height . '"';
 		}
